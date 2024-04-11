@@ -29,7 +29,7 @@ console.log(objetoPrueba)
 
 const num = 10
 const result = sumaMultiplos(num);
-console.log("\nResultado de suma de multiplos: "+result)
+console.log("\nNumero: "+num+"\nResultado de suma de multiplos: "+result)
     
 
 //Funcion de suma de multiplos
