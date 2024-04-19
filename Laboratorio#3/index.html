@@ -7,18 +7,53 @@
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-    <!--Problema 1-->
-    <h2>Problema palindromo</h2>
-    
+    <h1>Problemas - Laboratorio #3</h1>
 
-    <!--Problema 2-->
-    <br><hr></td><h2>Problema de cantidad de caracteres de una cadena</h2>
+    <section>
+        <!-- Problema Palíndromo -->
+        <div class="problem-container">
+            <h2>Problema palíndromo</h2>
+            <p>Ingrese un número entero:</p>
+            <input type="number" id="numeroPali" min="0">
+            <!-- Utiliza type="button" para evitar que el formulario se envíe -->
+            <button type="button" id="validarBtn">Validar</button>
+            <p id="resultPalin"></p>
+        </div>
+    </section>
 
-    <!--Problema 3-->
-    <br><hr><h2>Problema de validar año bisiesto</h2>
+    <section>
+        <!--Problema 2-->
+        <div class="problem-container">
+            <h2>Problema de cantidad de caracteres de una cadena</h2>
+            <p>Ingrese una cadena:</p>
+            <input type="text" id="cadena">
+            <button type="submit" onclick="cadenaCaract()">Enviar</button>
+            <p id="resultCaract"></p>
+        </div>
+    </section>
 
-    <!--Problema 4-->
-    <br><hr><h2>Problema de suma de números primos</h2>
-    
+    <section>
+        <!--Problema 3-->
+        <div class="problem-container">
+            <h2>Problema de validar año bisiesto</h2>
+            <p>Ingrese un año:</p>
+            <input type="number" id="anio" min="0">
+            <button type="submit" onclick="funcion()">Enviar</button>
+            <p id="resultAnio"></p>
+        </div>
+    </section>
+
+    <section>
+        <!--Problema 4-->
+        <div class="problem-container">
+            <h2>Problema de suma de números primos</h2>
+            <p>Ingrese un número entero:</p>
+            <input type="number" id="numPrimo" min="1">
+            <button type="submit" onclick="verificarPrimo()">Verificar</button>
+            <p id="resultPrimo"></p>
+        </div>
+    </section>
+
+    <script src="prueba.js"></script>
 </body>
 </html>

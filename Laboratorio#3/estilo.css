@@ -1,5 +1,52 @@
-body{
+body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 30px;
+    text-align: center;
 }
 
+section {
+    background-color: rgb(172, 230, 234);
+    padding: 30px;
+    border-radius: 40px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}
+
+.problem-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.problem-container h2 {
+    margin-bottom: 10px;
+}
+
+.problem-container p {
+    margin-bottom: 10px;
+}
+
+input {
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgb(9, 82, 124);
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(78, 152, 194);
+}
+
+#resultCaract, #resultPrimo {
+    margin-top: 10px;
+}
