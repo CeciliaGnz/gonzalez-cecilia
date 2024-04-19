@@ -25,13 +25,11 @@
         return paliDiez(numero) && paliDos(numero);
     };
 
-    // Función para validar el número ingresado en el HTML
     const validarNumero = () => {
         const input = document.getElementById('numeroPali');
         const numero = parseInt(input.value);
         const resultado = paliDoble(numero);
 
-        // Display the result in the HTML
         const resultadoElemento = document.getElementById('resultPalin');
         if (resultado) {
             resultadoElemento.textContent = `El número ${numero} es un palíndromo de doble base.`;
@@ -69,9 +67,8 @@
         const cadena = cadenaInput.value;
         const result = caracteres(cadena);
 
-        // Mostrar el resultado en el HTML
         const resultElemento = document.getElementById('resultCaract');
-        resultElemento.textContent = JSON.stringify(result); // Mostrar el objeto como cadena JSON
+        resultElemento.textContent = JSON.stringify(result); //De objeto a JSON
     };
 
     document.addEventListener('DOMContentLoaded', () => {
