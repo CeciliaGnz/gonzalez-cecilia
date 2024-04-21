@@ -65,10 +65,10 @@
     const cadenaCaract = () => {
         const cadenaInput = document.getElementById('cadena');
         const cadena = cadenaInput.value;
-        const result = caracteres(cadena);
+        const result = caracteres(cadena.toUpperCase());
 
         const resultElemento = document.getElementById('resultCaract');
-        resultElemento.textContent = JSON.stringify(result); //De objeto a JSON
+        resultElemento.textContent = `Existen en la cadena los siguientes caracteres : ${JSON.stringify(result)}`; //De objeto a JSON
     };
 
     document.addEventListener('DOMContentLoaded', () => {
