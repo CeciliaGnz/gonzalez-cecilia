@@ -26,8 +26,8 @@
     };
 
     const validarNumero = () => {
-        const input = document.getElementById('numeroPali');
-        const numero = parseInt(input.value);
+        const numInput = document.getElementById('numeroPali');
+        const numero = parseInt(numInput.value);
         const resultado = paliDoble(numero);
 
         const resultadoElemento = document.getElementById('resultPalin');
@@ -84,8 +84,30 @@
 -------------------------------------------------------------------------*/
 (()=>{
 
+    const bisiesto =(anio)=>{
+        if (anio % 4 === 0){
+            if (anio % 100 === 0){
+                if (anio % 400 === 0){
+                    return true
+                }
+            }
+        }
+    }
+
     const validarAnio =()=>{
+        const anioInput = document.getElementById('anio');
+        const anio = parseInt(anioInput.value);
+        const resulBisiesto = document.getElementById('resultBisiesto');
         
+        if(anio > 0){
+        const resultAnio=bisiesto(anio);
+        if (resultAnio) {
+            resulBisiesto.textContent = `El año ${anio} es bisiesto.`;
+        } else {
+            resulBisiesto.textContent = `El año ${anio} no es bisiesto`;
+        }
+    }else {resulBisiesto.textContent = `${anio} no es un año valido`;}
+
     }
 
     document.addEventListener('DOMContentLoaded', () => {
