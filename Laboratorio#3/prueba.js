@@ -84,6 +84,14 @@
 -------------------------------------------------------------------------*/
 (()=>{
 
+    const validarAnio =()=>{
+        
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const btnEnviar = document.getElementById('btnAnio');
+        btnEnviar.addEventListener('click', validarAnio);
+    });
 
 })();
 //-------------------------------------------------------------------------
