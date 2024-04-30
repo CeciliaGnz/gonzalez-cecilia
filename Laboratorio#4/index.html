@@ -19,6 +19,11 @@
             </div>
                 <div class="card2">
                   <div class="container">
+                    <div class="grid-container">
+                      <div class="item">1</div>
+                      <div class="item">1</div>
+                      <div class="item">1</div>
+                    </div>
                 <span id="res"></span>
                 </div>
             </div>
@@ -42,7 +47,6 @@
         handlers: {
           handleForm(e) {
             e.preventDefault();
-            //estructura fibonacci
             const formFibonacci=App.methods.formFibonacci(num);
             const res = 
             App.render(res);
@@ -52,7 +56,10 @@
           formFibonacci(num) {
             //Formula fibonacci
             const numStr=num.toString();
-
+            const fibonacci =  [];
+              for (var i = 2; i < number; i++) {
+              fibonacci[i] = fibonacci[i - 2] + fibonacci[i - 1];
+            }
 
           },
         },
