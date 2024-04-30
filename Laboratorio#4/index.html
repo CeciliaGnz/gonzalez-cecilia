@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio #4 </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <div class="card1">
+            <h1>Secuencia Fibonacci</h1>
+            <div class="container">
+                <form id="form">
+                    <label for="num">Cantidad de elementos: </label><br>
+                    <input id="num" type="number" name="num"><br>
+                    <button type="submit">Calcular</button>
+                </form>
+              </div>
+            </div>
+                <div class="card2">
+                  <div class="container">
+                <span id="res"></span>
+                </div>
+            </div>
+        
+    </section>
+
+    <script>
+        (() => {
+      // Secuencia Fibonacci
+      const App = {
+        htmlElements: {
+          form: document.getElementById('form'),
+          res: document.getElementById('res'),
+        },
+        init() {
+          App.bindEvents();
+        },
+        bindEvents() {
+          App.htmlElements.form.addEventListener('submit', App.handlers.handleForm);
+        },
+        handlers: {
+          handleForm(e) {
+            e.preventDefault();
+            //estructura fibonacci
+            const formFibonacci=App.methods.formFibonacci(num);
+            const res = 
+            App.render(res);
+          },
+        },
+        methods: {
+          formFibonacci(num) {
+            //Formula fibonacci
+            const numStr=num.toString();
+
+
+          },
+        },
+        render(res) {
+          App.htmlElements.res.textContent = res;
+        }
+      };
+      App.init();
+    })();
+    </script>
+</body>
+</html>
