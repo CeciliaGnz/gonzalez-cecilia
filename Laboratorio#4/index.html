@@ -4,6 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laboratorio #4 </title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <section>
@@ -13,30 +16,25 @@
                 <form id="form">
                     <label for="num">Cantidad de elementos: </label><br>
                     <input id="num" type="number" name="num"><br>
-                    <button type="submit">Calcular</button>
+                    <button class="submit" type="submit">Calcular</button>
                 </form>
               </div>
             </div>
                 <div class="card2">
                   <div class="container">
-                    <div class="grid-container">
-                      <div class="item">1</div>
-                      <div class="item">1</div>
-                      <div class="item">1</div>
-                    </div>
+                    <div class="grid-container" id="fibonacciItems">
+                  </div>
                 <span id="res"></span>
                 </div>
             </div>
-        
     </section>
 
     <script>
         (() => {
-      // Secuencia Fibonacci
       const App = {
         htmlElements: {
           form: document.getElementById('form'),
-          res: document.getElementById('res'),
+          res: document.getElementById('fibonacciItems'),
         },
         init() {
           App.bindEvents();
@@ -47,24 +45,49 @@
         handlers: {
           handleForm(e) {
             e.preventDefault();
-            const formFibonacci=App.methods.formFibonacci(num);
-            const res = 
-            App.render(res);
+            const num = parseInt(App.htmlElements.form.num.value);
+            const sequence = App.methods.formFibonacci(num);
+            App.render(sequence);
           },
         },
         methods: {
           formFibonacci(num) {
-            //Formula fibonacci
-            const numStr=num.toString();
-            const fibonacci =  [];
-              for (var i = 2; i < number; i++) {
-              fibonacci[i] = fibonacci[i - 2] + fibonacci[i - 1];
-            }
+            const fibonacci = [];
+              for (let i = 0; i < num; i++) {
+              if (i === 0 || i === 1) {
+              fibonacci.push(1);
+              } else {
+              fibonacci.push(fibonacci[i - 1] + fibonacci[i - 2]);
+              }
+              }
+              return fibonacci;
 
           },
         },
-        render(res) {
-          App.htmlElements.res.textContent = res;
+        render(sequence) {
+          // el contenedor se vacia cuando va a hacer otro calculo
+          App.htmlElements.res.innerHTML = '';
+              sequence.forEach(num => {
+              const item = document.createElement('div');
+              item.classList.add('item');
+              item.textContent = num;
+
+              //boton de eliminar
+              const deleteButton = document.createElement('button');
+              deleteButton.textContent = 'X';
+              deleteButton.classList.add('delete');
+
+              // evento click para eliminar
+              deleteButton.addEventListener('click', (e) => {
+                  item.parentNode.removeChild(item);
+              });
+
+              //boton de eliminar al elemento
+              item.appendChild(deleteButton);
+
+              //agrega el elemento 
+              App.htmlElements.res.appendChild(item);
+          });
         }
       };
       App.init();

@@ -1,14 +1,15 @@
   body{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+    font-family: inter;
   }
 
   .card1 {
-      background-color: rgba(231, 229, 229, 0.459);
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      transition: 0.3s;
-      padding: 20px;
-      margin: 15px;
-      border-radius: 10px;
+    background-color: rgb(240, 240, 240);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+    font-weight: 200;
   }
   
   .card1:hover {
@@ -21,18 +22,19 @@
   }
 
   input{
-    border-style: none;
+    border-color: rgb(217, 217, 217);
+    border-style: solid;
     margin-top: 10px;
   }
 
-  button{
+  .submit{
     width: 20%;
     height: 30px;
     margin-top: 10px;
-    background-color: brown;
+    background-color: rgb(158, 0, 0);
     color:  rgb(231, 229, 229);
-    border-radius: 10px;
-    font-size: 25px;
+    border-style: none;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     float: right;
   }
 
@@ -41,18 +43,38 @@
     transition: 0.3s;
     padding: 14px;
     margin: 20px;
-}
+  }
 
-  .grid-container{
+  .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto;
-    background-color: #c7cbcf;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 8fr)); /* Una sola columna que se ajusta al ancho */
+    grid-gap: 20px;
   }
 
   .item {
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.8);
-    padding: 20px;
+    position: relative;
+    background-color: rgb(240, 240, 240);
+    font-weight: 300;
+    padding: 10px 0px 10px;
     font-size: 15px;
     text-align: center;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  .item:hover .delete {
+    display: block;
+  }
+
+  .delete {
+    display: none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color:  rgb(158, 0, 0);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 5px;
   }
