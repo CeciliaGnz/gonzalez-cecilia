@@ -105,6 +105,7 @@ form {
 
 /* Estilo para los campos de entrada de texto, select y botones */
 input[type="text"],
+input[type="number"],
 select,
 input[type="submit"] {
     margin-bottom: 10px;
@@ -135,6 +136,18 @@ ul {
     list-style-type: none;
     padding: 0;
 }
+
+.color-circulo {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px; /* Espacio entre el círculo y el nombre */
+  }
+  .candidato-info {
+    display: flex;
+    align-items: center; /* Alinear verticalmente */
+  }
 
 /* Estilo para el registro de estado */
 #registroEstado {

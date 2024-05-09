@@ -56,10 +56,10 @@
         App.methods.candidatos.forEach(candidato => {
           const listaItem = document.createElement("li");
           listaItem.innerHTML = `
-          <div class="candidate-info">
+          <div class="candidato-info">
             <span>Candidato/a: ${candidato.name}</span>
             <span>, Color representativo: </span>
-            <span class="color-circle" style="background-color: ${candidato.color};"></span>
+            <span class="color-circulo" style="background-color: ${candidato.color};"></span>
           </div>
           <button class="eliminarBtn">Eliminar candidato</button>`;
           App.htmlElements.candidatoLista.appendChild(listaItem);
