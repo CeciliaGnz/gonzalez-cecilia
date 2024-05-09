@@ -1,0 +1,148 @@
+/* Estilo para el cuerpo del documento */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+/* Estilo para el encabezado principal */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilo para las secciones */
+section {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Estilo para la tarjeta 1 */
+.card1 {
+    background-color: rgb(7, 47, 135);
+    color: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilo para el lado izquierdo de la tarjeta 1 */
+.card1 .left {
+    width: 50%;
+}
+
+/* Estilo para el lado derecho de la tarjeta 1 */
+.card1 .right {
+    width: 45%;
+}
+
+/* Estilo para la tarjeta 2 */
+.card2 {
+    background-color: #f5f5f5;
+    color: rgb(7, 47, 135);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+}
+
+/* Estilo para las imágenes */
+img {
+    float: center;
+    height: 70%;
+    width: 70%;
+}
+
+/* Estilo para la lista de ítems */
+.listaItems {
+    color: rgb(0, 0, 0);
+    font-size: larger;
+}
+
+/* Estilo para cada ítem de la lista */
+.listaItems li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgb(7, 47, 135);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para el botón de eliminar */
+.eliminarBtn {
+    background-color: #e02b2b;
+    color: #f0f0f0;
+    border-radius: 10px;
+    border-style: none;
+    padding: 10px;
+}
+
+/* Estilo hover para el botón de eliminar */
+.eliminarBtn:hover {
+    background-color: #a52929;
+    cursor: pointer;
+}
+
+/* Estilo para los encabezados secundarios */
+h2 {
+    margin-bottom: 10px;
+}
+
+/* Estilo para los formularios */
+form {
+    margin-bottom: 20px;
+}
+
+/* Estilo para los campos de entrada de texto, select y botones */
+input[type="text"],
+select,
+input[type="submit"] {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 50%;
+    box-sizing: border-box;
+    border-radius: 15px;
+    border-style: none;
+    font-size: 15px;
+}
+
+/* Estilo para los botones de envío */
+input[type="submit"] {
+    font-weight: 700;
+    color: #273cb4;
+    font-size: 17px;
+}
+
+/* Estilo hover para los botones de envío */
+input[type="submit"]:hover {
+    background-color: #3e9240;
+    color: white;
+    cursor: pointer;
+}
+
+/* Estilo para las listas no ordenadas */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Estilo para el registro de estado */
+#registroEstado {
+    margin-top: 10px;
+}
+
+/* Estilo para el gráfico de pastel */
+.pie-chart {
+    height: 200px;
+    background-color: lightgray;
+}

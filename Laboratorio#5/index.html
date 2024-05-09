@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio #5</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <h1> Laboratorio #5 </h1>
+    <section>
+        <div class="card1">
+            <div class="left">
+                <h2>Candidato:</h2>
+                <form id="form">
+                    <p>Ingresar nombre de candidato: </p>
+                    <input type="text" id="candidatoNombre" placeholder="Nombre Apellido" required>
+                    <p>Selecciona un color en representación del candidato: <input type="color" id="colorSelector"><br></p>
+                    <input type="submit" value="Registrar candidato">
+                </form>
+            </div>
+            <div class="right">
+                <img src="img/vote.png">
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="card2">
+            <h2>Listado de candidatos ingresados:</h2><hr>
+            <div class="listaItems">
+            <ul id="candidatoLista"></ul>
+            </div>  
+        </div>
+    </section>
+
+    <section>
+        <div class="card1">
+            <div class="left">
+                <h2>Candidato:</h2>
+                <div class="candidatoColor"></div>
+                <input type="number" id="candidatoVotos" placeholder="Votos recibidos">
+            </div>
+            <div class="right">
+                <div class="pie-chart"></div>
+            </div>
+        </div>
+    </section>
+    
+
+    <script src="script.js"></script>
+
+</body>
+</html>
