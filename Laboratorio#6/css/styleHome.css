@@ -1,0 +1,54 @@
+body {
+    background: #c0c0c0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #666;
+}
+
+.container {
+    margin: 60px auto;
+    padding: 100px;
+    max-width: 600px; /* Ajusta el tamaño máximo del contenedor */
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 1px 1px 1px #666;
+}
+
+
+.user-info {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+}
+
+.info-text {
+    flex: 1; /* Permite que el texto ocupe todo el espacio restante */
+    margin-left: 20px; /* Ajusta el margen izquierdo del texto */
+}
+
+img {
+    width: 40%; /* Reduce el tamaño de la imagen */
+}
+
+.container h2 {
+    margin: 0; /* Quitamos el margen superior del título */
+    color: #30c26d;
+    font-size: 28px;
+}
+
+.container p {
+    margin-top: 10px; 
+}
+
+.container button {
+    border: none;
+    background: #0d8b42;
+    color: white;
+    font-weight: bold;  
+    margin-top: 20px;
+    padding: 10px 12px;
+    border-radius: 5px;
+}
+
+.container button:hover {
+    cursor: pointer;
+    background: #055018;
+}
