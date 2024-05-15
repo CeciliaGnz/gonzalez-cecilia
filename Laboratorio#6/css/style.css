@@ -60,3 +60,10 @@ body {
 label{
     font-size: large;
 }
+
+span{
+    color: red;
+    display: block; /* Hace que el span sea un bloque para poder usar text-align */
+    text-align: center; /* Centra el contenido del span */
+    margin: 0 auto; /* Centra el span horizontalmente */
+}

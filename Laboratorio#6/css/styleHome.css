@@ -38,7 +38,7 @@ img {
     margin-top: 10px; 
 }
 
-.container button {
+.container input {
     border: none;
     background: #0d8b42;
     color: white;
@@ -48,7 +48,7 @@ img {
     border-radius: 5px;
 }
 
-.container button:hover {
+.container input:hover {
     cursor: pointer;
     background: #055018;
 }
