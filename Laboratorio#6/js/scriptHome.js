@@ -24,7 +24,7 @@
       },
 
       verificarSesion(user) {
-        const userNameElement = document.getElementById("userName"); // Corrige el acceso al elemento del nombre de usuario
+        const userNameElement = document.getElementById("userName"); //COLOCAR PARA BIENVENIDAD Y EL NOMBRE DEL USUARIO AJUSTAR
         if (user && userNameElement) {userNameElement.textContent = user;} 
     },
     };
