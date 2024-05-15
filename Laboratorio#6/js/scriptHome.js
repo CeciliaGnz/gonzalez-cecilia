@@ -27,7 +27,7 @@
         const userNameElement = document.getElementById("userName"); //COLOCAR PARA BIENVENIDAD Y EL NOMBRE DEL USUARIO AJUSTAR
         if (user && userNameElement) {userNameElement.textContent = user;} 
     },
-    };
+    }; 
     
     App.init();
   })();
