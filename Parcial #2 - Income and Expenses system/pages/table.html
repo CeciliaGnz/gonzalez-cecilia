@@ -3,14 +3,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabla de registros</title>
-    <link rel="stylesheet" href="../style/styleTable.css">
     <script src="../js/nav.js"></script>
+    <link rel="stylesheet" href="../style/styleTable.css">
+    
 </head>
 <body>
 
     <div id="nav-placeholder"></div>
     <section>
-        <table></table>
+        <form class="form-money"></form>
+        <div class="control-group">
+            <h3>Ingrese el monto:</h3>
+            <div class="input-number">
+                <input type="number" placeholder="Monto" min="0">
+            </div>
+            <br><h3>Seleccione un tipo de transacción a realizar</h3>
+            <div class="select">
+              <select>
+                <option>Tipo de transacción</option>
+                <option>Deposito</option>
+                <option>Retiro</option>
+              </select>
+              <div class="select__arrow"></div>
+            </div>
+            
+        </div>
     </section>
 
 </body>
