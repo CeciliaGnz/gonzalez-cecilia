@@ -12,25 +12,48 @@
     <div id="nav-placeholder">
     </div><script src="../js/nav.js"></script>
     
-    <section>
-        <form class="form-money"></form>
-        <div class="control-group">
-            <h3>Ingrese el monto:</h3>
-            <div class="input-number">
-                <input type="number" placeholder="Monto" min="0">
-            </div>
-            <br><h3>Seleccione un tipo de transacción a realizar</h3>
-            <div class="select">
-              <select>
-                <option>Tipo de transacción</option>
-                <option>Ingreso</option>
-                <option>Salida</option>
-              </select>
-              <div class="select__arrow"></div>
+    <section class="container">
+        <div class="form-container">
+            <form class="form-money"></form>
+            <div class="control-group">
+                <h3>Ingrese el monto:</h3>
+                <div class="input-number">
+                    <input type="number" placeholder="Monto" min="0">
+                </div>
+                <br>
+                <h3>Seleccione un tipo de transacción a realizar</h3>
+                <div class="select">
+                    <select>
+                        <option>Tipo de transacción</option>
+                        <option>Ingreso</option>
+                        <option>Salida</option>
+                    </select>
+                    <div class="select__arrow"></div>
+                </div>
             </div>
         </div>
+        
+        <div class="chart-container">
+            <!-- Espacio para el contenido adicional -->
+        </div>
+    </section>
 
-        <h2>Tabla de Ingresos y salidas</h2>
+    <section class="table-section">
+        <h2>Tabla de Ingresos y Salidas</h2>
+        <table id="tabla-registros">
+            <thead>
+                <tr>
+                    <th>Monto</th>
+                    <th>Fecha</th>
+                    <th>Tipo de Ingreso</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="no-data">
+                    <td colspan="3">Sin datos</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 
 </body>

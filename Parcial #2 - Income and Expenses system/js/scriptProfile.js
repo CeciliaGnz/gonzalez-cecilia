@@ -18,11 +18,8 @@
       handlers: {
         onLogout(e) {
           e.preventDefault();
-          App.methodsEvents.logout();
+          Sesion.logout();
         },
-      },
-      methods:{
-        
       },
     };
     

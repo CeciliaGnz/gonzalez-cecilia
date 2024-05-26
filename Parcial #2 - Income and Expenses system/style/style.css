@@ -39,7 +39,8 @@ body {
   }
   
   .form input[type=submit]:hover {
-      background: #b35b09;  
+      background: #b35b09; 
+      cursor: pointer; 
   }
   
   .form h2 {
