@@ -2,11 +2,9 @@
   const App = {
       htmlElements: {
           navPlaceholder: document.getElementById("nav-placeholder"),
-          userName: document.getElementById("user-name")
       },
       init() {
           App.loadNavigation();
-          App.showUserName();
       },
 
       loadNavigation() {
@@ -14,16 +12,35 @@
         .then(response => response.text())
         .then(data => {
           App.htmlElements.navPlaceholder.innerHTML = data;
-          
+          // Ahora que el contenido de nav.html se ha cargado, actualiza las referencias de los elementos
+          App.htmlElements.userName = document.getElementById("user-name");
+          App.htmlElements.logoutButton = document.getElementById("logoutButton");
+          App.bindEvents();
+          App.methods.showUserName();
         });
       },
 
-      showUserName() {
+      bindEvents() {
+        if (App.htmlElements.logoutButton) {
+          App.htmlElements.logoutButton.addEventListener("click", App.handlers.onLogout);
+        }
+      },
+
+      handlers: {
+        onLogout(e) {
+          e.preventDefault();
+          Sesion.logout();
+        },
+      },
+
+      methods :{
+        showUserName() {
         const username = localStorage.getItem("username");
-        if (username) {
+        if (username && App.htmlElements.userName) {
             App.htmlElements.userName.textContent = username;
         }
-    }
+      }
+    },
   };
 
   App.init();
