@@ -1,5 +1,4 @@
 (() => {
-  // Comprueba si ya hay datos en localStorage y los carga si existen
   const Insertar = JSON.parse(localStorage.getItem('usuarios')) || [];
 
   const methods = {
@@ -37,6 +36,7 @@
           const user = Insertar.find(item => item.username === username && item.password === hashedPassword);
           if (user) {
               localStorage.setItem("username", username);
+              localStorage.setItem("nombre", user.nombre);
               window.location.href = "../pages/profile.html";
           } else {
               templates.mensajeError();
@@ -59,8 +59,28 @@
 
       logout() {
         localStorage.removeItem("username");
+        localStorage.removeItem("nombre");
         window.location.href = "login.html";
       },
+
+      cambiarPass(nuevaPass) {
+        const username = localStorage.getItem("username");
+        const hashedPassword = methods.hashCode(nuevaPass);
+        const userIndex = Insertar.findIndex(user => user.username === username);
+        if (userIndex !== -1) {
+            Insertar[userIndex].password = hashedPassword;
+            localStorage.setItem('usuarios', JSON.stringify(Insertar));
+        }
+    },
+
+      cambiarNombre(nuevoNombre) {
+        const username = localStorage.getItem("username");
+        const userIndex = Insertar.findIndex(user => user.username === username);
+        if (userIndex !== -1) {
+            Insertar[userIndex].nombre = nuevoNombre;
+            localStorage.setItem("nombre", nuevoNombre);
+        }
+    },
   };
 
   window.Sesion = Sesion;
