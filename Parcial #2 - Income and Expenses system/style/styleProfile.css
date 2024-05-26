@@ -39,6 +39,13 @@ img {
     font-size: 28px;
 }
 
+.container h3{
+    margin: 25px 0px 5px 0px;
+    color: #be732b;
+    font-size: 20px;
+}
+
+
 .container p {
     margin-top: 10px; 
 }
@@ -54,25 +61,39 @@ img {
 .container input[type=text],
 .container input[type=password]
 {
-    background: #e6ccb2;
-    color: rgb(0, 0, 0);
+    background: #ffebd7;
+    color: #b35b09;
+    border: .1rem solid #d37f3165;
+    
 }
 
-.form-profile #editButton {
+.form-data #nameNewBtn{
     background: #d37f31;
     color: white;
+    margin-bottom: 25px;
 }
-.form-profile #editButton:hover {
+
+.form-pass #passNewBtn {
+    background: #27a823;
+    color: white;
+}
+
+.form-data #nameNewBtn:hover {
     cursor: pointer;
     background: #b35b09;
 }
 
-.form-profile #logoutButton{
+.form-pass #passNewBtn:hover {
+    cursor: pointer;
+    background: #20851c;
+}
+
+.form-pass #logoutButton{
     background: #c92a24;
     color: white;
 }
 
-.form-profile #logoutButton:hover {
+.form-pass #logoutButton:hover {
     cursor: pointer;
     background: #b90707;
 }
