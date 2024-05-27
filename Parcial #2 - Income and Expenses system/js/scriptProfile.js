@@ -2,6 +2,7 @@
   ((Sesion) => {
       const App = {
           htmlElements: {
+              form:document.getElementById("form-data"),
               logoutButton: document.getElementById("logoutButton"),
               passNewBtn: document.getElementById("passNewBtn"),
               nameNewBtn:document.getElementById("nameNewBtn"),
@@ -12,6 +13,7 @@
               confirmPass: document.getElementById("confirmPass")
           },
           init() {
+            this.htmlElements.form = document.getElementById("form-data");
               App.bindEvents();
               App.verificarSesion();
               App.mostrarData();
@@ -75,15 +77,41 @@
               cambiarNombre(nuevoNombre) {
                 Sesion.cambiarNombre(nuevoNombre);
                 App.methods.showName(); 
-                alert("Nombre modificado."); //cambiar por un mensaje con estilo
+                App.template.mensajeExitoso(App.htmlElements.form, "Nombre modificado con exito."); 
               },
-
+            
               cambiarPassword(newPass){
                 Sesion.cambiarPass(newPass);
-                alert("Contraseña modificada.");//cambiar por un mensaje con estilo
+                App.template.mensajeExitoso(App.htmlElements.form, "Contraseña cambiada con exito.");
               }
+          },
+
+          template:{
+            mensajeError(mensaje) {
+              const error = document.createElement("span");
+              error.textContent = mensaje;
+              error.style.color = "red";
+              error.style.marginTop = "10px"; 
+              form.appendChild(error);
+              setTimeout(() => {
+                  error.remove();
+              }, 2000);
+          },
+      
+          mensajeExitoso(form, mensaje) {
+            const success = document.createElement("span");
+            success.textContent = mensaje;
+            success.style.color = "green";  
+            success.style.marginTop = "10px"; 
+            form.appendChild(success);
+            setTimeout(() => {
+                success.remove();
+            }, 2000);
+          }
+        
           }
       };
+      
 
       App.init();
   })(window.Sesion);

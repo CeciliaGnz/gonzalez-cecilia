@@ -5,6 +5,7 @@
           salidas: 0
       },
       htmlElements: {
+          form:document.getElementById("form-money"),
           sendMoney: document.getElementById('sendMoney'),  
           monto: document.getElementById('monto'),  
           tipoTransaccion: document.getElementById('tipo-transaccion'),  
@@ -46,6 +47,7 @@
                     App.chartData.salidas += monto;
                 }
                 App.chart.actualizarPorcentajes();
+                App.template.mensajeExitoso(App.htmlElements.form, "Monto ingresado correctamente."); 
               }
           }
       },
@@ -101,6 +103,19 @@
           App.htmlElements.porcentajeIngreso.textContent = `${porcentajeIngresos.toFixed(2)}%`;//convierte a dos decimales
           App.htmlElements.porcentajeSalida.textContent = `${porcentajeSalidas.toFixed(2)}%`;
       }
+      },
+
+      template: {
+        mensajeExitoso(form, mensaje) {
+          const success = document.createElement("span");
+          success.textContent = mensaje;
+          success.style.color = "green";  
+          success.style.marginTop = "10px"; 
+          form.appendChild(success);
+          setTimeout(() => {
+              success.remove();
+          }, 2000);
+        }
       }
   };
 

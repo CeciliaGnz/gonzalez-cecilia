@@ -12,7 +12,7 @@
         .then(response => response.text())
         .then(data => {
           App.htmlElements.navPlaceholder.innerHTML = data;
-          // Ahora que el contenido de nav.html se ha cargado, actualiza las referencias de los elementos
+          
           App.htmlElements.userName = document.getElementById("user-name");
           App.htmlElements.logoutButton = document.getElementById("logoutButton");
           App.bindEvents();

@@ -34,6 +34,7 @@
                 alert('El usuario ya existe. Por favor, elige otro nombre de usuario.');//cambiar por un mensaje con estilo
             } else {
                 Sesion.registro(username, nombre, password);
+                alert('Usuario registrado exitosamente.');
             }
         }
     }

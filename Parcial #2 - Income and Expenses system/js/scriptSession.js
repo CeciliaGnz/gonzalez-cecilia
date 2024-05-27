@@ -14,9 +14,9 @@
   };
 
   const templates = {
-    mensajeError() {
+    mensajeError(mensaje) {
         const error = document.createElement("span");
-        error.textContent = "Usuario o contraseña incorrectos.";
+        error.textContent = mensaje;
         error.style.color = "red";
         error.style.marginTop = "10px"; 
         form.appendChild(error);
@@ -54,7 +54,7 @@
               localStorage.setItem("nombre", user.nombre);
               window.location.href = "../pages/profile.html";
           } else {
-              templates.mensajeError();
+            templates.mensajeError("Usuario o contraseña incorrectos.");
           }
       },
 
@@ -85,19 +85,17 @@
         if (userIndex !== -1) {
             Insertar[userIndex].password = hashedPassword;
             localStorage.setItem('usuarios', JSON.stringify(Insertar));
-            templates.mensajeExitoso("Contraseña cambiada con exito."); 
         }
     },
 
       cambiarNombre(nuevoNombre) {
-        const mensaje="Nombre cambiado con exito."
+        var mensaje="Nombre cambiado con exito."
         const username = localStorage.getItem("username");
         const userIndex = Insertar.findIndex(user => user.username === username);
         if (userIndex !== -1) {
             Insertar[userIndex].nombre = nuevoNombre;
             localStorage.setItem("nombre", nuevoNombre);
             localStorage.setItem('usuarios', JSON.stringify(Insertar));
-            templates.mensajeExitoso(mensaje); 
         }
     },
   };
