@@ -2,7 +2,6 @@
         const App = {
             htmlElements: {
             form: document.getElementById("form")
-
             },
         
         init() {

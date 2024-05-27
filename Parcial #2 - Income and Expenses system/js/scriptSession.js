@@ -89,7 +89,6 @@
     },
 
       cambiarNombre(nuevoNombre) {
-        var mensaje="Nombre cambiado con exito."
         const username = localStorage.getItem("username");
         const userIndex = Insertar.findIndex(user => user.username === username);
         if (userIndex !== -1) {
