@@ -75,12 +75,12 @@
               cambiarNombre(nuevoNombre) {
                 Sesion.cambiarNombre(nuevoNombre);
                 App.methods.showName(); 
-                alert("Nombre modificado.");
+                alert("Nombre modificado."); //cambiar por un mensaje con estilo
               },
 
               cambiarPassword(newPass){
                 Sesion.cambiarPass(newPass);
-                alert("Contraseña modificada.");
+                alert("Contraseña modificada.");//cambiar por un mensaje con estilo
               }
           }
       };

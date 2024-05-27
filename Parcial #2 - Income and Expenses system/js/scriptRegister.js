@@ -31,10 +31,9 @@
 
         registroUsuario(username,nombre,password){
             if (Sesion.usuarioExiste(username)) {
-                alert('El usuario ya existe. Por favor, elige otro nombre de usuario.');
+                alert('El usuario ya existe. Por favor, elige otro nombre de usuario.');//cambiar por un mensaje con estilo
             } else {
                 Sesion.registro(username, nombre, password);
-                alert('Usuario registrado exitosamente.');
             }
         }
     }

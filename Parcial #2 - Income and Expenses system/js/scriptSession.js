@@ -14,21 +14,36 @@
   };
 
   const templates = {
-      mensajeError() {
-          const error = document.createElement("span");
-          error.textContent = "Usuario o contraseña incorrectos.";
-          form.appendChild(error);
-          setTimeout(() => {
-              error.remove();
-          }, 2000);
-      }
-  };
+    mensajeError() {
+        const error = document.createElement("span");
+        error.textContent = "Usuario o contraseña incorrectos.";
+        error.style.color = "red";
+        error.style.marginTop = "10px"; 
+        form.appendChild(error);
+        setTimeout(() => {
+            error.remove();
+        }, 2000);
+    },
+
+    mensajeExitoso(mensaje) {
+        const success = document.createElement("span");
+        success.textContent = mensaje;
+        success.style.color = "green";  
+        success.style.marginTop = "10px"; 
+        form.appendChild(success);
+        setTimeout(() => {
+            success.remove();
+        }, 2000);
+    }
+
+};
 
   const Sesion = {
       registro(username, nombre, password) {
           const hashedPassword = methods.hashCode(password);
           Insertar.push({ username, nombre, password: hashedPassword });
-          localStorage.setItem('usuarios', JSON.stringify(Insertar)); 
+          localStorage.setItem('usuarios', JSON.stringify(Insertar));
+          templates.mensajeExitoso("Usuario registrado exitosamente."); 
       },
 
       inicioSesion(username, password) {
@@ -70,15 +85,19 @@
         if (userIndex !== -1) {
             Insertar[userIndex].password = hashedPassword;
             localStorage.setItem('usuarios', JSON.stringify(Insertar));
+            templates.mensajeExitoso("Contraseña cambiada con exito."); 
         }
     },
 
       cambiarNombre(nuevoNombre) {
+        const mensaje="Nombre cambiado con exito."
         const username = localStorage.getItem("username");
         const userIndex = Insertar.findIndex(user => user.username === username);
         if (userIndex !== -1) {
             Insertar[userIndex].nombre = nuevoNombre;
             localStorage.setItem("nombre", nuevoNombre);
+            localStorage.setItem('usuarios', JSON.stringify(Insertar));
+            templates.mensajeExitoso(mensaje); 
         }
     },
   };
