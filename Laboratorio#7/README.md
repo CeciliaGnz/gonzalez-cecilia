@@ -1,4 +1,4 @@
-# lab7
+# laboratorio#7
 
 To install dependencies:
 
