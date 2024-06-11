@@ -19,5 +19,5 @@ app.get('/fibonacci', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Servidor en http://localhost:${port}`);
+    console.log(`Servidor en http://localhost:${port}/fibonacci`);
 });
