@@ -16,7 +16,7 @@ function fibonacciSeries(num) {
 }
 
 app.get('/fibonacci', (req, res) => {
-    const num = parseInt(req.query.num, 10); //WHY
+    const num = parseInt(req.query.num); 
     const sequence = fibonacciSeries(num);
     res.json(sequence);
 });
