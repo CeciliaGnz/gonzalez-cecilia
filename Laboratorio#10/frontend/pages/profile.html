@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de usuario</title>
+    
+    <link rel="stylesheet" href="../style/styleProfile.css">
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    
+    
+    <section>
+        <div class="container">
+            <div class="home-content">
+                <div class="user-info">
+                    <div class="info-text">
+                        <h2>Bienvenido/a, <span id="titleNom">Usuario</span>!</h2>
+                        
+                        <form class="form-data" id="form-data">
+                            <h3>Datos generales: </h3>
+                            <label for="username">Usuario:</label>
+                            <input type="text" name="username" id="userName" disabled><br>
+                            <label for="name">Nombre:</label>
+                            <input type="text" name="nombre" id="nombre"><br>
+                            <input type="submit" id="nameNewBtn" value="Cambiar nombre"><br>
+                        </form>
+                        <form class="form-pass" id="form-pass" >
+                            <h3>Cambiar contraseña: </h3>
+                            <label for="password">Contraseña nueva:</label>
+                            <input type="password" name="password" id="newPass"><br>
+                            <label for="password">Confirmar contraseña:</label>
+                            <input type="password" name="confirmPass" id="confirmPass"><br>
+
+                            <input type="submit" id="passNewBtn" value="Guardar contraseña">  
+                            <input type="submit" id="logoutButton" value="Cerrar sesión">   
+                        </form>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script src="../js/scriptSession.js"></script>
+    <script src="../js/scriptProfile.js"></script>
+    <script src="../js/nav.js"></script>
+    
+</body>
+</html>

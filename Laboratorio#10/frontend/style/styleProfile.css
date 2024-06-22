@@ -1,0 +1,100 @@
+html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+body {
+    background: linear-gradient(to top, #eca868, #b35b09);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #666;
+}
+
+.container {
+    margin: 60px auto;
+    padding: 100px;
+    max-width: 600px; 
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 1px 1px 1px #666;
+}
+
+
+.user-info {
+    display: flex;
+    align-items: center; 
+}
+
+.info-text {
+    flex: 1; 
+    margin-left: 20px; 
+}
+
+img {
+    width: 40%;
+}
+
+.container h2 {
+    margin: 0;
+    color: #d37f31;
+    font-size: 28px;
+}
+
+.container h3{
+    margin: 25px 0px 5px 0px;
+    color: #be732b;
+    font-size: 20px;
+}
+
+
+.container p {
+    margin-top: 10px; 
+}
+
+.container input {
+    border: none;
+    font-weight: bold;  
+    margin-top: 20px;
+    padding: 10px 12px;
+    border-radius: 10px;
+}
+
+.container input[type=text],
+.container input[type=password]
+{
+    background: #ffebd7;
+    color: #b35b09;
+    border: .1rem solid #d37f3165;
+    
+}
+
+.form-data #nameNewBtn{
+    background: #d37f31;
+    color: white;
+    margin-bottom: 25px;
+}
+
+.form-pass #passNewBtn {
+    background: #27a823;
+    color: white;
+}
+
+.form-data #nameNewBtn:hover {
+    cursor: pointer;
+    background: #b35b09;
+}
+
+.form-pass #passNewBtn:hover {
+    cursor: pointer;
+    background: #20851c;
+}
+
+.form-pass #logoutButton{
+    background: #c92a24;
+    color: white;
+}
+
+.form-pass #logoutButton:hover {
+    cursor: pointer;
+    background: #b90707;
+}
+  
