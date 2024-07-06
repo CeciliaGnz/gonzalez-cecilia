@@ -1,4 +1,8 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
+
+// Importa la configuración de Tailwind CSS
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   content: ["./frontend/**/*.{html,js}"],
   theme: {
@@ -7,7 +11,6 @@ module.exports = {
         sans: ['Poppins', ...defaultTheme.fontFamily.sans],
       },
     },
-    
   },
   plugins: [],
-}
+};
