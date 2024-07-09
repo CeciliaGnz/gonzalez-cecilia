@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="../../src/css/output.css" rel="stylesheet">
-    <title>Navbar</title>
     <style>
-        .hidden-menu {
-            display: none;
-        }
-    </style>
-</head>
-<body class="bg-gray-100 font-sans w-full min-h-screen m-0">
+      .hidden-menu {
+          display: none;
+      }
+  </style>
+<nav>
+<div class="bg-gray-100 font-sans w-full min-h-screen m-0">
     <div class="bg-white shadow">
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between py-4">
@@ -43,9 +38,9 @@
                     </button>
                 </div>
                     <a href="../profileFree.html" class="text-gray-800 text-sm font-semibold  px-4 py-2  hover:text-purple-600 hover:border-purple-600"> <span id="nombre-apellido">
-                      <%= usuarioLogueado.nombre %> <%= usuarioLogueado.apellido %>
+                      Nombre apellido
                   </span></a>
-                    <a href="#" class="sm:flex cursor-pointer ml-2">
+                    <a href="#" id="logoutButton" class="sm:flex cursor-pointer ml-2">
                       <svg xmlns="http://www.w3.org/2000/svg"   class="w-6 h-6 text-purple-600"  viewBox="0 0 24 24" id="signout"><path fill="currentColor" d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"></path></svg>
                    </a>
                 </div>
@@ -78,21 +73,15 @@
               </button>
           </div>
           <a href="../profileFree.html" class="block text-gray-800 text-sm font-semibold px-4 py-2 hover:text-purple-600 hover:border-purple-600"> <span id="nombre-apellido">
-            <%= usuarioLogueado.nombre %> <%= usuarioLogueado.apellido %>
+            Nombre apellido
         </span></a>
-          <a href="#" class="sm:flex cursor-pointer ml-2">
+          <a href="#" id="logoutButton" class="sm:flex cursor-pointer ml-2">
             <svg xmlns="http://www.w3.org/2000/svg"   class="w-6 h-6 text-purple-600"  viewBox="0 0 24 24" id="signout"><path fill="currentColor" d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"></path></svg>
          </a>
       </div>
       
-    
+    </div>
+  </div>
+</nav>
 
-
-    <script>
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            var mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden-menu');
-        });
-    </script>
-</body>
-</html>
+<script src="../../src/js/nav/navFree.js"></script>
