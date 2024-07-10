@@ -9,28 +9,89 @@
 
     <div id="nav-placeholder"></div>
 
-    <div class="w-full max-w-md mx-auto pt-8">
-        <div class="flex border-b border-gray-300">
+    <div class="w-full max-w-screen-lg mx-auto pt-8">
+        <div class="flex border-b border-purple-300">
             <button
-                class="w-1/2 py-4 text-center font-medium text-gray-700 bg-gray-100 rounded-tl-lg focus:outline-none active:bg-gray-200"
-                onclick="openTab(event, 'tab1')">Tab 1</button>
-            <button class="w-1/2 py-4 text-center font-medium text-gray-700 bg-gray-100 rounded-tr-lg focus:outline-none"
-                onclick="openTab(event, 'tab2')">Tab 2</button>
+                class="w-1/2 py-4 text-center font-medium text-purple-700 bg-gray-100 rounded-tl-lg focus:outline-none active:bg-gray-200"
+                onclick="openTab(event, 'tab1')">Editar perfil</button>
+            <button class="w-1/2 py-4 text-center font-medium text-purple-700 bg-gray-100 rounded-tr-lg focus:outline-none"
+                onclick="openTab(event, 'tab2')">Ver mis trabajos creados</button>
         </div>
         <div id="tab1" class="tabcontent p-4">
-            <h2 class="text-lg font-bold text-gray-800">Tab 1 Content</h2>
+            <h2 class="text-xl font-bold text-purple-800">Bienvenid@ <span id="nombre-apellido">
+                Nombre apellido
+            </span></h2>
             <p class="mt-2 text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel enim euismod,
                 imperdiet felis vel, ultrices risus. Sed nec quam id elit fringilla blandit a a risus.</p>
+
+                <div class="bg-white mt-8 overflow-hidden shadow rounded-lg border">
+                    <div class="px-4 py-5 sm:px-6">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            Mi información
+                        </h3>
+                        <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                            This is some information about the user.
+                        </p>
+                    </div>
+                    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                        <dl class="sm:divide-y sm:divide-gray-200">
+                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-purple-500">
+                                    Nombre completo
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    John Doe
+                                </dd>
+                            </div>
+                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-purple-500">
+                                    Correo electronico
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    johndoe@example.com
+                                </dd>
+                            </div>
+                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-purple-500">
+                                    Número de telefono
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    (123) 456-7890
+                                </dd>
+                            </div>
+                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-purple-500">
+                                    Tipo de usuario
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    Contratista
+                                </dd>
+                            </div>
+                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-purple-500">
+                                    Empresa
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    Farmacias Arrocha
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
         </div>
         <div id="tab2" class="tabcontent p-4 hidden">
-            <h2 class="text-lg font-bold text-gray-800">Tab 2 Content</h2>
+            <h2 class="text-xl font-bold text-purple-800">Trabajos creado por mi</h2>
             <p class="mt-2 text-gray-700">Duis lobortis velit tellus, eget luctus tellus facilisis eget. Maecenas non massa
                 varius, molestie lorem eget, molestie nisi. Suspendisse potenti.</p>
+
+                
         </div>
     </div>
     
   
 </body>
+
   <script>
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
@@ -40,10 +101,10 @@
             }
             tablinks = document.getElementsByTagName("button");
             for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active:bg-gray-200");
+                tablinks[i].classList.remove("active:bg-purple-200");
             }
             document.getElementById(tabName).classList.remove("hidden");
-            evt.currentTarget.classList.add("active:bg-gray-200");
+            evt.currentTarget.classList.add("active:bg-purple-200");
         }
     </script>
 
