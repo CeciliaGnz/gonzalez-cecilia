@@ -9,9 +9,43 @@
 
     <div id="nav-placeholder"></div>
 
-    Hola contratista
+    <div class="w-full max-w-md mx-auto pt-8">
+        <div class="flex border-b border-gray-300">
+            <button
+                class="w-1/2 py-4 text-center font-medium text-gray-700 bg-gray-100 rounded-tl-lg focus:outline-none active:bg-gray-200"
+                onclick="openTab(event, 'tab1')">Tab 1</button>
+            <button class="w-1/2 py-4 text-center font-medium text-gray-700 bg-gray-100 rounded-tr-lg focus:outline-none"
+                onclick="openTab(event, 'tab2')">Tab 2</button>
+        </div>
+        <div id="tab1" class="tabcontent p-4">
+            <h2 class="text-lg font-bold text-gray-800">Tab 1 Content</h2>
+            <p class="mt-2 text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel enim euismod,
+                imperdiet felis vel, ultrices risus. Sed nec quam id elit fringilla blandit a a risus.</p>
+        </div>
+        <div id="tab2" class="tabcontent p-4 hidden">
+            <h2 class="text-lg font-bold text-gray-800">Tab 2 Content</h2>
+            <p class="mt-2 text-gray-700">Duis lobortis velit tellus, eget luctus tellus facilisis eget. Maecenas non massa
+                varius, molestie lorem eget, molestie nisi. Suspendisse potenti.</p>
+        </div>
+    </div>
+    
+  
 </body>
-
+  <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.add("hidden");
+            }
+            tablinks = document.getElementsByTagName("button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active:bg-gray-200");
+            }
+            document.getElementById(tabName).classList.remove("hidden");
+            evt.currentTarget.classList.add("active:bg-gray-200");
+        }
+    </script>
 
 <script src="../src/js/nav/navContractor.js"></script>
 </html>

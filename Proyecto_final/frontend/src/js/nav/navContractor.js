@@ -15,7 +15,7 @@
             fetch('../html/navbar/navContractor.html')
                 .then(response => response.text())
                 .then(data => {
-                    this.htmlElements.navPlaceholder.innerHTML = data;
+                    App.htmlElements.navPlaceholder.innerHTML = data;
                     App.setupMenuToggle();
                 })
                 .catch(error => {
@@ -27,6 +27,11 @@
             setTimeout(() => {
                 App.htmlElements.menuToggle = document.getElementById('menu-toggle');
                 App.htmlElements.mobileMenu = document.getElementById('mobile-menu');
+
+                // Aplicar la clase 'hidden-menu' inicialmente si mobileMenu existe
+                if (App.htmlElements.mobileMenu) {
+                    App.htmlElements.mobileMenu.classList.add('hidden-menu');
+                }
 
                 App.bindMenuToggle();
             }, 100);
