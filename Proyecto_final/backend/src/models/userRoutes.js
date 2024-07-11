@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
     }
 
     // Crear y guardar el nuevo usuario
-    const newUser = new User({ username, email, password, accountType });
+    const newUser = new users({ username, email, password, accountType });
     await newUser.save();
     res.status(201).json(newUser);
   } catch (error) {
