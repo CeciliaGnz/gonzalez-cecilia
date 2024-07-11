@@ -12,7 +12,6 @@ function validatePassword(password) {
 // Ruta para registrar un nuevo usuario
 router.post('/', async (req, res) => {
   const { username, email, password, accountType } = req.body;
-
   // Verificar la complejidad de la contraseña
   if (!validatePassword(password)) {
     return res.status(400).json({ message: 'La contraseña debe tener al menos 8 caracteres, incluyendo una letra, un número y un símbolo.' });

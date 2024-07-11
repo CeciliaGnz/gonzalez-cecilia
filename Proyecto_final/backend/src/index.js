@@ -23,6 +23,10 @@ mongoose.connect(mongoURI)
 const userRoutes = require('../src/models/userRoutes');
 app.use('/api/users', userRoutes);
 
+app.get('/health-check', (req, res) => {
+  res.json({ message: 'I am alive!' });
+});
+
 // Rutas de ejemplo
 app.get('/', (req, res) => {
   res.send('Hola Mundo!');
