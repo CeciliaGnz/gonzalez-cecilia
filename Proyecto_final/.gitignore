@@ -1,2 +1,5 @@
 # Ignorar archivos de configuración de entorno
 backend/.env
+
+#tarea que ejecuta desde vscode wbeb para iniciar servidor
+.vscode/
