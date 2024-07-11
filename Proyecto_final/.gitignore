@@ -1,2 +1,4 @@
 # Ignorar archivos de configuración de entorno
 backend/.env
+
+.vscode
