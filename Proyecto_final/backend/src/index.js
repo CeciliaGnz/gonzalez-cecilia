@@ -14,6 +14,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Configuración para servir archivos estáticos (CSS, HTML, JS)
+app.use(express.static(path.join(__dirname, '../../frontend')));
 
 // Conectar a MongoDB
 const mongoURI = process.env.MONGO_URI;
@@ -23,14 +25,14 @@ mongoose.connect(mongoURI)
   .catch(err => console.error('Error al conectar a MongoDB:', err));
 
 // Rutas de usuario
-
 app.use('/api/users', userRoutes);
 
+// Ruta de salud para verificar que el servidor está activo
 app.get('/health-check', (req, res) => {
-  res.json({ message: 'I am alive!' });
+  res.json({ message: 'Servidor en línea' });
 });
 
-// Endpoint para servir el archivo de registro "/" luego colocar /registro , el que va solo es el home
+// Endpoint para servir la página de registro
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../../frontend/html/registro.html'));
 });

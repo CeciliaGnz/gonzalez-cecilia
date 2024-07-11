@@ -1,6 +1,6 @@
 document.getElementById('registerForm').addEventListener('submit', async function(event) {
     event.preventDefault();
-    const username = document.getElementById('username').value;
+    const username = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const accountType = document.getElementById('accountType').value;
