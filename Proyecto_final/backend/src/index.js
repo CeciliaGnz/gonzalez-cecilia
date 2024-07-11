@@ -20,8 +20,16 @@ mongoose.connect(mongoURI)
   .catch(err => console.error('Error al conectar a MongoDB:', err));
 
 // Rutas de usuario
-const userRoutes = require('../src/models/userRoutes');
+const userRoutes = require('../src/routes/userRoutes');
 app.use('/api/users', userRoutes);
+
+// Rutas de autenticación
+const authRoutes = require('../src/routes/authRoutes');
+app.use('/api/auth', authRoutes);
+
+// Rutas de trabajos
+const jobRoutes = require('../src/routes/jobRoutes');
+app.use('/api/jobs', jobRoutes);
 
 // Rutas de ejemplo
 app.get('/', (req, res) => {
@@ -32,3 +40,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
+
+
