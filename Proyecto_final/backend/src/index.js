@@ -15,8 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.use(express.static(path.join(__dirname, '../../frontend/html')));
-
 // Conectar a MongoDB
 const mongoURI = process.env.MONGO_URI;
 
@@ -34,12 +32,8 @@ app.get('/health-check', (req, res) => {
 
 // Endpoint para servir el archivo de registro "/" luego colocar /registro , el que va solo es el home
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, './frontend/html/registro.html'));
+  res.sendFile(path.join(__dirname, '../../frontend/html/registro.html'));
 });
-
-/* Rutas de ejemplo
-app.get('/', (req, res) => {
-  res.send('Hola*/
 
 // Iniciar el servidor
 app.listen(port, () => {
