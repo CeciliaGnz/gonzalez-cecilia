@@ -4,9 +4,9 @@ const { ObjectId } = require('mongodb');
 
 const generateToken = (user) => {
 
-  const payload = { password: user.password, username: user.username };
+  const payload = { password: user.password, email: user.email };
   const token = jwt.sign(payload, process.env.JWT_SECRET);
-  return token  // Sin `expiresIn`
+  return token
 };
 
 const authenticateToken = (req, res, next) => {
@@ -15,7 +15,7 @@ const authenticateToken = (req, res, next) => {
   if (!token) return res.sendStatus(401);
   jwt.verify(token, process.env.JWT_SECRET, async (err, payload) => {
     if (err) return res.sendStatus(403);
-    const user = await User.findOne({ username: payload.username, password: payload.password });
+    const user = await User.findOne({ email: payload.email, password: payload.password });
     if (!user) return res.sendStatus(403);
     req.user = user;
     next();

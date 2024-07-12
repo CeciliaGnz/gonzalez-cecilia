@@ -23,10 +23,6 @@ mongoose.connect(mongoURI)
 const userRoutes = require('../src/routes/userRoutes');
 app.use('/api/users', userRoutes);
 
-// Rutas de autenticación
-const authRoutes = require('../src/routes/authRoutes');
-app.use('/api/auth', authRoutes);
-
 // Rutas de trabajos
 const jobRoutes = require('../src/routes/jobRoutes');
 app.use('/api/jobs', jobRoutes);
