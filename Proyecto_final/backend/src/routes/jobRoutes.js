@@ -1,6 +1,7 @@
 const express = require('express');
 const Job = require('../models/job');
 const Application = require('../models/application');
+const User = require('../models/user'); // Asegúrate de importar el modelo de usuario
 const { authenticateToken } = require('../middleware/auth');
 
 const router = express.Router();
@@ -8,35 +9,39 @@ const router = express.Router();
 // Devolver todos los registros jobs
 router.get('/', authenticateToken, async (req, res) => {
   try {
-    const jobs = await Job.find().select('-applicants');
+    const jobs = await Job.find();
     res.json(jobs);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-//Extraer todos los jobs de un contractor
-router.get('/contractor/:contractor_id', authenticateToken, async (req, res) => {
+// Extraer todos los jobs de un contractor
+router.get('/contractor', authenticateToken, async (req, res) => {
   try {
-    const jobs = await Job.find({ contractor_id: req.params.contractor_id });
+    const userEmail = req.user.email;
+    const user = await User.findOne({ email: userEmail });
+    const jobs = await Job.find({ contractor_id: user._id });
     res.json(jobs);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-// Aplicar a una trabajo.
+// Aplicar a un trabajo
 router.patch('/:id/applicants', authenticateToken, async (req, res) => {
   try {
-    const { talent_id, status, work_submission } = req.body;
+    const { status, work_submission } = req.body;
+    const userEmail = req.user.email;
+    const user = await User.findOne({ email: userEmail });
 
     const job = await Job.findById(req.params.id);
     if (!job) return res.status(404).json({ message: 'Trabajo no encontrado' });
 
-    job.applicants.push({ talent_id, status });
+    job.applicants.push({ talent_id: user._id, status });
     await job.save();
 
-    const application = new Application({ job_id: job._id, talent_id, status, work_submission });
+    const application = new Application({ job_id: job._id, talent_id: user._id, status, work_submission });
     await application.save();
 
     res.json({ message: 'Aplicación exitosa' });
@@ -45,10 +50,12 @@ router.patch('/:id/applicants', authenticateToken, async (req, res) => {
   }
 });
 
-// Extraer todos las aplicacciones de un talento.
-router.get('/applications/:talent_id', authenticateToken, async (req, res) => {
+// Extraer todas las aplicaciones de un talento
+router.get('/applications', authenticateToken, async (req, res) => {
   try {
-    const applications = await Application.find({ talent_id: req.params.talent_id });
+    const userEmail = req.user.email;
+    const user = await User.findOne({ email: userEmail });
+    const applications = await Application.find({ talent_id: user._id });
     res.json(applications);
   } catch (error) {
     res.status(500).json({ message: error.message });
