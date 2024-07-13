@@ -1,0 +1,39 @@
+CONTRATISTA
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de contratista</title>
+    <link href="../src/css/output.css" rel="stylesheet">
+</head>
+<body>
+
+    <div id="nav-placeholder"></div>
+
+    Hola contratista
+</body>
+
+
+<script src="../src/js/nav/navContractor.js"></script>
+</html>
+ 
+
+
+Freelancer 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Freelancer</title>
+    <link href="../src/css/output.css" rel="stylesheet">
+</head>
+<body>
+
+    <div id="nav-placeholder"></div>
+
+    Hola Freelancer
+</body>
+
+
+<script src="../src/js/nav/navFree.js"></script>
+</html>
