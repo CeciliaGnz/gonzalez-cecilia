@@ -125,62 +125,84 @@
         </div>
 
         <div id="tab2" class="tabcontent p-4 hidden">
-            <h2 class="text-2xl font-bold text-purple-800">Trabajos creado por mi</h2>
+            <div class="flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-purple-800">Trabajos creado por mi</h2>
+                <button id="createJobBtn" class="bg-purple-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-purple-700">Crear nuevo trabajo</button>
+            </div>
             <p class="mt-2 text-gray-700 pb-6">Duis lobortis velit tellus, eget luctus tellus facilisis eget. Maecenas non massa
                 varius, molestie lorem eget, molestie nisi. Suspendisse potenti.</p>
-
-
-                        <!-- Accordion start -->
+            <!-- Accordion start -->
             <ul class="accordion w-full bg-gray-50 rounded-lg shadow-lg shadow-gray-100 p-4">
-
                 <!-- Duplicate this <li> as often as you want -->
-                    <li class="cursor-pointer m-5">
-                        <span class="font-bold text-xl tracking-tight text-purple-500 flex justify-between items-center">
-                          <p>Titulo: <span id="title_job">Pagina web para cafeteria</span></p>
-                          <span class="flex items-center">
-                            <p class="font-normal text-base text-gray-700 mr-2">Lista de postulantes</p>
+                <li class="cursor-pointer m-6">
+                    <span class="font-bold text-xl tracking-tight text-purple-500 flex justify-between items-center">
+                        <p>Título: <span id="title_job">Página web para cafetería</span></p>
+                        <span class="flex items-center">
+                            <p class="font-normal text-base text-gray-700 mr-2">Postulantes</p>
                             <svg class="text-purple-600" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" viewBox="0 0 16 16">
-                              <path fill-rule="currentColor" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"/>
+                                <path fill-rule="currentColor" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z" />
                             </svg>
-                          </span>
                         </span>
-                        <div class="text-gray-500 text-md p-2">
-                          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate.
-                        </div>
-                      </li>
-                      
-                <div class="flex border-b border-gray-300"></div>
-                <!-- Copy of above <li> -->
-                <li class="cursor-pointer m-5">
-                    <span class="font-bold text-xl tracking-tight text-purple-500 flex flex-row justify-between items-center">
-                        <p>Heading 2</p>
-                        <svg class="text-purple-600 mr-1"xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
-                            <path fill-rule="currentColor" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"/>
-                        </svg>
                     </span>
                     <div class="text-gray-500 text-md p-2">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate
+                        <ul class="space-y-4">
+                            <!-- Postulante 1 -->
+                            <li class="flex justify-between items-center">
+                                <span>Juan Pérez - Postulado el 10/07/2024</span>
+                                <div class="flex space-x-2">
+                                    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Ver perfil</button>
+                                    <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700" onclick="aceptarPostulante(this)">Aceptar postulante</button>
+                                </div>
+                            </li>
+                            <!-- Postulante 2 -->
+                            <li class="flex justify-between items-center">
+                                <span>María Gómez - Postulada el 11/07/2024</span>
+                                <div class="flex space-x-2">
+                                    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Ver perfil</button>
+                                    <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700" onclick="aceptarPostulante(this)">Aceptar postulante</button>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </li>
-
+        
                 <div class="flex border-b border-gray-300"></div>
-                <!-- Copy of above <li> -->
-                <li class="cursor-pointer m-5">
-                    <span class="font-bold text-xl tracking-tight text-purple-500 flex flex-row justify-between items-center">
-                        <p>Heading 2</p>
-                        <svg class="text-purple-600 mr-1"xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
-                            <path fill-rule="currentColor" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"/>
-                        </svg>
+                <li class="cursor-pointer m-6">
+                    <span class="font-bold text-xl tracking-tight text-purple-500 flex justify-between items-center">
+                        <p>Título: <span id="title_job">Página web para cafetería</span></p>
+                        <span class="flex items-center">
+                            <p class="font-normal text-base text-gray-700 mr-2">Postulantes</p>
+                            <svg class="text-purple-600" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="currentColor" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z" />
+                            </svg>
+                        </span>
                     </span>
                     <div class="text-gray-500 text-md p-2">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate
+                        <ul class="space-y-4">
+                            <!-- Postulante 1 -->
+                            <li class="flex justify-between items-center">
+                                <span>Juan Pérez - Postulado el 10/07/2024</span>
+                                <div class="flex space-x-2">
+                                    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Ver perfil</button>
+                                    <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700" onclick="aceptarPostulante(this)">Aceptar postulante</button>
+                                </div>
+                            </li>
+                            <!-- Postulante 2 -->
+                            <li class="flex justify-between items-center">
+                                <span>María Gómez - Postulada el 11/07/2024</span>
+                                <div class="flex space-x-2">
+                                    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Ver perfil</button>
+                                    <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700" onclick="aceptarPostulante(this)">Aceptar postulante</button>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </li>
-
-
+        
+                <div class="flex border-b border-gray-300"></div>
+                
             </ul>
             <!-- Accordion end -->
-
         </div>
     </div>
 
@@ -201,11 +223,37 @@
             evt.currentTarget.classList.add("active:bg-purple-200");
         }
 
+        function aceptarPostulante(button) {
+    // Mostrar mensaje de confirmación
+    if (confirm("¿Está seguro de que desea aceptar a este postulante? Esto rechazará a todos los demás postulantes.")) {
+        // Obtener el <li> padre del botón
+        const li = button.closest('li');
+        
+        // Cambiar el contenido del <li> para mostrar el postulante aceptado
+        li.innerHTML = `
+            <span class="font-semibold text-lg tracking-tight text-gray-500 flex justify-between items-center">
+                <p>Persona encargada: <span>${li.querySelector('span').textContent.split(' - ')[0]}</span></p>
+            </span>
+        `;
+        
+        // Rechazar a todos los demás postulantes
+        const ul = li.closest('ul');
+        const lis = ul.querySelectorAll('li');
+        lis.forEach(l => {
+            if (l !== li) {
+                l.remove();
+            }
+        });
+    }
+}
+
         //ACORDION
         $(document).on('click', '.accordion li', function(e) {
         $(this).find('div').slideToggle();
         $(this).find('svg').toggleClass('flipY');
         });
+
+
     </script>
 
     <script src="../src/js/nav/navContractor.js"></script>
