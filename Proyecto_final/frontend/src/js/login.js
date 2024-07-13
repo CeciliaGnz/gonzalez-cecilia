@@ -13,6 +13,7 @@ document.querySelector('form').addEventListener('submit', async function(event) 
     });
 
     const result = await response.json();
+<<<<<<< HEAD
     if (response.ok) {
         const email  = result.email
         const type = result.type
@@ -24,8 +25,20 @@ document.querySelector('form').addEventListener('submit', async function(event) 
             }
         else{
             window.location.href = 'index.html';
+=======
+
+    if (response.ok) {
+        if (result.accountType === 'contractor') {
+            window.location.href = '/ruta/a/contratista.html'; // Cambia esta ruta a la página de contratista
+        } else if (result.accountType === 'talent') {
+            window.location.href = '/ruta/a/talento.html'; // Cambia esta ruta a la página de talento
+>>>>>>> fffdccce1b84cb9318ca45ec445c817e78d31706
         }
     } else {
         alert('Error: ' + result.message);
     }
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> fffdccce1b84cb9318ca45ec445c817e78d31706
