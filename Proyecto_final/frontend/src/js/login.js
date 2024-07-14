@@ -13,12 +13,17 @@ document.querySelector('form').addEventListener('submit', async function(event) 
     });
 
     const result = await response.json();
-
     if (response.ok) {
-        if (result.accountType === 'contractor') {
-            window.location.href = '/ruta/a/contratista.html'; // Cambia esta ruta a la página de contratista
-        } else if (result.accountType === 'talent') {
-            window.location.href = '/ruta/a/talento.html'; // Cambia esta ruta a la página de talento
+        const email  = result.email
+        const type = result.type
+        const token = result.token
+        sessionStorage.setItem("currentUser", JSON.stringify({email, type, token}));
+        if(type == 'talent')
+            {
+            window.location.href = '../html/home.html';
+            }
+        else{
+            window.location.href = '../html/index.html';
         }
     } else {
         alert('Error: ' + result.message);

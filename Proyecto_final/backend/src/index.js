@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-const userRoutes = require('../src/models/userRoutes');
+//const userRoutes = require('../src/models/userRoutes');
 
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
@@ -14,6 +14,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Configuración para servir archivos estáticos (CSS, HTML, JS)
+app.use(express.static(path.join(__dirname, '../../frontend')));
 
 // Conectar a MongoDB
 const mongoURI = process.env.MONGO_URI;
@@ -23,14 +25,14 @@ mongoose.connect(mongoURI)
   .catch(err => console.error('Error al conectar a MongoDB:', err));
 
 // Rutas de usuario
-
+const userRoutes = require('../src/routes/userRoutes');
 app.use('/api/users', userRoutes);
 
-app.get('/health-check', (req, res) => {
-  res.json({ message: 'I am alive!' });
-});
+// Rutas de trabajos
+const jobRoutes = require('../src/routes/jobRoutes');
+app.use('/api/jobs', jobRoutes);
 
-// Endpoint para servir el archivo de registro "/" luego colocar /registro , el que va solo es el home
+// Rutas de ejemplo
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../../frontend/html/registro.html'));
 });
@@ -39,3 +41,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
+
+
