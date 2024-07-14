@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-const userRoutes = require('../src/models/userRoutes');
+//const userRoutes = require('../src/models/userRoutes');
 
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
@@ -25,14 +25,14 @@ mongoose.connect(mongoURI)
   .catch(err => console.error('Error al conectar a MongoDB:', err));
 
 // Rutas de usuario
+const userRoutes = require('../src/routes/userRoutes');
 app.use('/api/users', userRoutes);
 
-// Ruta de salud para verificar que el servidor está activo
-app.get('/health-check', (req, res) => {
-  res.json({ message: 'Servidor en línea' });
-});
+// Rutas de trabajos
+const jobRoutes = require('../src/routes/jobRoutes');
+app.use('/api/jobs', jobRoutes);
 
-// Endpoint para servir la página de registro
+// Rutas de ejemplo
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../../frontend/html/registro.html'));
 });
@@ -41,3 +41,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
+
+

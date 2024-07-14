@@ -5,7 +5,8 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  accountType: { type: String, required: true } // Agregado campo accountType
+  profile: {type: Object, required: false},
+  type: {type: String, required: false}
 });
 
 // Encriptar contraseña antes de guardar
