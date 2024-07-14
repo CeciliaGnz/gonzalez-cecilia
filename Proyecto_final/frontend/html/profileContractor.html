@@ -21,6 +21,33 @@
         transition: all 1s cubic-bezier(0, .5, 0, 1);
     }
 
+/* Estilo básico del modal */
+.modal {
+    display: flex;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    margin-top: 10%;
+    border-radius: 30px;
+    position: relative; /* Para posicionar el botón de cerrar */
+    overflow: hidden; /* Evitar desbordamiento */
+}
+
+
+.hidden {
+    display: none;
+}
+
 </style>
 
 <body class="bg-gray-100">
@@ -127,12 +154,21 @@
         <div id="tab2" class="tabcontent p-4 hidden">
             <div class="flex justify-between items-center">
                 <h2 class="text-2xl font-bold text-purple-800">Trabajos creado por mi</h2>
-                <button id="createJobBtn" class="bg-purple-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-purple-700 flex items-center space-x-2">
+                <button id="openModal" class="bg-purple-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-purple-700 flex items-center space-x-2" onclick="toggleForm()">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                     <span>Crear nuevo trabajo</span>
                 </button>
+               
+                <!-- Modal -->
+                <div id="myModal" class="modal hidden">
+                    <div class="modal-content">
+                        <span class="close" id="closeModal">&times;</span>
+                        <h2>Crear Nuevo Trabajo</h2>
+                        <!-- Aquí se cargará el contenido del formulario -->
+                    </div>
+                </div>
                 
             </div>
             <p class="mt-2 text-gray-700 pb-6">Duis lobortis velit tellus, eget luctus tellus facilisis eget. Maecenas non massa
@@ -259,6 +295,43 @@
         $(this).find('svg').toggleClass('flipY');
         });
 
+        document.getElementById('openModal').addEventListener('click', function() {
+    fetch('formNewJob.html')
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector('#myModal .modal-content').innerHTML = data;
+            document.getElementById('myModal').classList.remove('hidden');
+        });
+});
+document.getElementById('openModal').addEventListener('click', function() {
+    fetch('formNewJob.html')
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector('#myModal .modal-content').innerHTML = data;
+            document.getElementById('myModal').classList.remove('hidden');
+        });
+});
+
+document.getElementById('myModal').addEventListener('click', function(event) {
+    if (event.target === document.getElementById('closeModal')) {
+        document.getElementById('myModal').classList.add('hidden');
+    }
+});
+
+// Manejar el botón de cancelar
+document.addEventListener('click', function(event) {
+    if (event.target.id === 'cancel-button') {
+        document.getElementById('myModal').classList.add('hidden');
+    }
+});
+
+// Cerrar el modal si se hace clic fuera del contenido del modal
+window.onclick = function(event) {
+    const modal = document.getElementById('myModal');
+    if (event.target === modal) {
+        modal.classList.add('hidden');
+    }
+};
 
     </script>
 

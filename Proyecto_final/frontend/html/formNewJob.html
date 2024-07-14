@@ -11,7 +11,7 @@
 <div class="min-h-screen bg-gray-100 p-0 sm:p-12">
     <div class="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
         <h1 class="text-2xl text-center font-bold mb-8">Formulario para crear trabajo</h1>
-        <form id="form" novalidate>
+        <form id="formNewJob">
             <div class="flex flex-row space-x-4">
                 <div class="relative z-0 w-full mb-5">
                     <input
@@ -41,105 +41,200 @@
             </div>
 
             <div class="relative z-0 w-full mb-5">
-                <input
-                    type="password"
-                    name="password"
+                <textarea
+                    name="description"
                     placeholder=" "
+                    rows="4"
                     class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-                />
-                <label for="password" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Enter password</label>
-                <span class="text-sm text-red-600 hidden" id="error">Password is required</span>
+                ></textarea>
+                <label for="description" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Descripción del trabajo</label>
+                <span class="text-sm text-red-600 hidden" id="error">Descripción requerida</span>
             </div>
+            
 
             <div class="relative z-0 w-full mb-5">
                 <select
                     name="select"
                     value=""
                     onclick="this.setAttribute('value', this.value);"
-                    class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-                >
+                    class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200">
                     <option value="" selected disabled hidden></option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                    <option value="4">Option 4</option>
-                    <option value="5">Option 5</option>
+                    <option value="Desarrollador Web">Desarrollador Web</option>
+                    <option value="Desarrollador movil">Desarrollador movil</option>
+                    <option value="Desarrollador videojuegos">Desarrollador videojuegos</option>
+                    <option value="Diseñador UX/UI">Diseñador UX/UI</option>
                 </select>
-                <label for="select" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Select an option</label>
-                <span class="text-sm text-red-600 hidden" id="error">Option has to be selected</span>
+                <label for="select" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Selecciona una aréa</label>
+                <span class="text-sm text-red-600 hidden" id="error">Area requerida</span>
             </div>
+           
 
             <div class="flex flex-row space-x-4">
                 <div class="relative z-0 w-full mb-5">
                     <input
-                        type="text"
+                        type="date"
+                        id="date"
                         name="date"
                         placeholder=" "
-                        onclick="this.setAttribute('type', 'date');"
                         class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+                        value="" 
+                        disabled 
                     />
-                    <label for="date" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Date</label>
-                    <span class="text-sm text-red-600 hidden" id="error">Date is required</span>
+                    <label for="date" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Fecha de creación</label>
+                    <span class="text-sm text-red-600 hidden" id="error">Fecha de creación</span>
                 </div>
                 <div class="relative z-0 w-full">
                     <input
-                        type="text"
-                        name="time"
-                        placeholder=" "
-                        onclick="this.setAttribute('type', 'time');"
-                        class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-                    />
-                    <label for="time" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Time</label>
-                    <span class="text-sm text-red-600 hidden" id="error">Time is required</span>
-                </div>
-            </div>
-
-            <div class="relative z-0 w-full mb-5">
-                <input
                     type="number"
                     name="money"
                     placeholder=" "
                     class="pt-3 pb-2 pl-5 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
                 />
                 <div class="absolute top-0 left-0 mt-3 ml-1 text-gray-400">$</div>
-                <label for="money" class="absolute duration-300 top-3 left-5 -z-1 origin-0 text-gray-500">Amount</label>
-                <span class="text-sm text-red-600 hidden" id="error">Amount is required</span>
+                <label for="money" class="absolute duration-300 top-3 left-5 -z-1 origin-0 text-gray-500">Salario</label>
+                <span class="text-sm text-red-600 hidden" id="error">Salario requerido</span>
+                </div>
             </div>
 
-            <div class="relative z-0 w-full mb-5">
-                <input
-                    type="text"
-                    name="duration"
-                    placeholder=" "
-                    class="pt-3 pb-2 pr-12 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-                />
-                <div class="absolute top-0 right-0 mt-3 mr-4 text-gray-400">min</div>
-                <label for="duration" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Duration</label>
-                <span class="text-sm text-red-600 hidden" id="error">Duration is required</span>
+           <!--AQUI VA LOS CHECKBOX EN HORIZONTAL-->
+           <label for="skills" class="block text-gray-500 mb-2">Habilidades</label>
+<ul class="flex flex-wrap">
+    <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-600 w-1/3">
+        <div class="relative flex items-start">
+            <div class="flex items-center h-5">
+                <input id="list-group-item-checkbox-4" name="skills" type="checkbox" class="peer w-5 h-5 cursor-pointer appearance-none border border-gray-300 rounded-md checked:bg-white" />
             </div>
+            <label for="list-group-item-checkbox-4" class="ml-3.5 block text-sm font-normal text-gray-600 cursor-pointer">Java</label>
+        </div>
+    </li>
+    <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-600 w-1/3">
+        <div class="relative flex items-start">
+            <div class="flex items-center h-5">
+                <input id="list-group-item-checkbox-5" name="skills" type="checkbox" class="peer w-5 h-5 cursor-pointer appearance-none border border-gray-300 rounded-md checked:bg-white" />
+            </div>
+            <label for="list-group-item-checkbox-5" class="ml-3.5 block text-sm font-normal text-gray-600 cursor-pointer">Kotlin</label>
+        </div>
+    </li>
+    <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-600 w-1/3">
+        <div class="relative flex items-start">
+            <div class="flex items-center h-5">
+                <input id="list-group-item-checkbox-6" name="skills" type="checkbox" class="peer w-5 h-5 cursor-pointer appearance-none border border-gray-300 rounded-md checked:bg-white" />
+            </div>
+            <label for="list-group-item-checkbox-6" class="ml-3.5 block text-sm font-normal text-gray-600 cursor-pointer">Figma</label>
+        </div>
+    </li>
+    <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-600 w-1/3">
+        <div class="relative flex items-start">
+            <div class="flex items-center h-5">
+                <input id="list-group-item-checkbox-7" name="skills" type="checkbox" class="peer w-5 h-5 cursor-pointer appearance-none border border-gray-300 rounded-md checked:bg-white" />
+            </div>
+            <label for="list-group-item-checkbox-7" class="ml-3.5 block text-sm font-normal text-gray-600 cursor-pointer">Sketch</label>
+        </div>
+    </li>
+    <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-600 w-1/3">
+        <div class="relative flex items-start">
+            <div class="flex items-center h-5">
+                <input id="list-group-item-checkbox-8" name="skills" type="checkbox" class="peer w-5 h-5 cursor-pointer appearance-none border border-gray-300 rounded-md checked:bg-white" />
+            </div>
+            <label for="list-group-item-checkbox-8" class="ml-3.5 block text-sm font-normal text-gray-600 cursor-pointer">Python</label>
+        </div>
+    </li>
+    <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-600  w-1/3">
+        <div class="relative flex items-start">
+            <div class="flex items-center h-5">
+                <input id="list-group-item-checkbox-9" name="skills" type="checkbox" class="peer w-5 h-5 cursor-pointer appearance-none border border-gray-300 rounded-md checked:bg-white" />
+            </div>
+            <label for="list-group-item-checkbox-9" class="ml-3.5 block text-sm font-normal text-gray-600 cursor-pointer">PHP</label>
+        </div>
+    </li>
+    <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-600  w-1/3">
+        <div class="relative flex items-start">
+            <div class="flex items-center h-5">
+                <input id="list-group-item-checkbox-10" name="skills" type="checkbox" class="peer w-5 h-5 cursor-pointer appearance-none border border-gray-300 rounded-md checked:bg-white" />
+            </div>
+            <label for="list-group-item-checkbox-10" class="ml-3.5 block text-sm font-normal text-gray-600 cursor-pointer">HTML</label>
+        </div>
+    </li>
+    <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-600  w-1/3">
+        <div class="relative flex items-start">
+            <div class="flex items-center h-5">
+                <input id="list-group-item-checkbox-11" name="skills" type="checkbox" class="peer w-5 h-5 cursor-pointer appearance-none border border-gray-300 rounded-md checked:bg-white" />
+            </div>
+            <label for="list-group-item-checkbox-11" class="ml-3.5 block text-sm font-normal text-gray-600 cursor-pointer">Javascript</label>
+        </div>
+    </li>
+    <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-600 w-1/3">
+        <div class="relative flex items-start">
+            <div class="flex items-center h-5">
+                <input id="list-group-item-checkbox-12" name="skills" type="checkbox" class="peer w-5 h-5 cursor-pointer appearance-none border border-gray-300 rounded-md checked:bg-white" />
+            </div>
+            <label for="list-group-item-checkbox-12" class="ml-3.5 block text-sm font-normal text-gray-600 cursor-pointer">CSS</label>
+        </div>
+    </li>
+    <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-600  w-1/3">
+        <div class="relative flex items-start">
+            <div class="flex items-center h-5">
+                <input id="list-group-item-checkbox-13" name="skills" type="checkbox" class="peer w-5 h-5 cursor-pointer appearance-none border border-gray-300 rounded-md checked:bg-white" />
+            </div>
+            <label for="list-group-item-checkbox-13" class="ml-3.5 block text-sm font-normal text-gray-600 cursor-pointer">C</label>
+        </div>
+    </li>
+</ul>
+
+
+
+
 
             <div class="payment mb-6">
-          
-                <h4 class="mb-2">Payment</h4>
-                <p class="bg-gray-200 py-3 text-center text-sm">
-                  <span><i class="far fa-credit-card"></i></span>
-                  All jobs cost <strong>€300</strong> for 30 days.
+                <h4 class="mb-2">Pago</h4>
+                <p class="bg-gray-200 py-3 text-center text-sm flex items-center justify-center">
+                    <span class="mr-2">
+                        <i class="far fa-credit-card"></i>
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 mr-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
+                    </svg>
+                    Cada publicación de trabajo tiene un costo de &nbsp<strong> 15$</strong>.
                 </p>
-                
+            </div>
+
+            <!--space-->
+
+            <div class="inline-flex items-center">
+                <label class="relative flex items-center p-3 rounded-full cursor-pointer" htmlFor="link">
+                  <input type="checkbox"
+                    class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:bg-gray-900 checked:before:bg-gray-900 hover:before:opacity-10"
+                    id="linkPay" />
+                  <span
+                    class="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"
+                      stroke="currentColor" stroke-width="1">
+                      <path fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </span>
+                </label>
+                <label class="mt-px font-light text-gray-700 cursor-pointer select-none" htmlFor="link">
+                  <p class="flex font-sans text-sm antialiased font-normal leading-relaxed text-blue-gray-900">
+                    Estoy de acuerdo con los términos de pago y autorización
+                  </p>
+                </label>
               </div>
+            
 
             <div class="flex justify-between space-x-4">
                 <button
                     id="create-button"
                     type="button"
-                    class="flex-1 px-6 py-3 mt-3 text-lg text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-purple-500 hover:bg-purple-600 hover:shadow-lg focus:outline-none"
+                    class="flex-1 px-3 py-3 mt-3 text-base text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-purple-500 hover:bg-purple-600 hover:shadow-lg focus:outline-none"
                 >
-                    Crear trabajo
+                    Crear trabajo por <strong> 15$</strong>
                 </button>
                 <button
                     id="cancel-button"
                     type="button"
-                    class="flex-1 px-6 py-3 mt-3 text-lg text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-red-500 hover:bg-red-600 hover:shadow-lg focus:outline-none"
+                    class="flex-1 px-3 py-3 mt-3 text-base text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-red-500 hover:bg-red-600 hover:shadow-lg focus:outline-none"
                 >
                     Cancelar
                 </button>
@@ -147,51 +242,52 @@
         </form>
     </div>
 </div>
-
 <script>
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Simulando la respuesta de inicio de sesión para fines de ejemplo
-    const loginResponse = {
-        message: 'Inicio de sesión exitoso',
-        accountType: 'contratista', // o 'talento'
-        username: 'Antonia Soto' // Este debería ser el nombre real del usuario
-    };
-
-    // Establece el nombre del contratista en el campo de entrada
-    const inputField = document.getElementById('contractorName');
-    inputField.value = loginResponse.username;
-
-    // Añade la clase para mover la etiqueta si el campo de entrada tiene un valor
-    const label = inputField.nextElementSibling;
-    if (inputField.value) {
-        label.classList.add('shrink');
-        label.textContent = 'Nombre contratista';
-    }
-});
-
-    document.getElementById('button').addEventListener('click', toggleError)
-    const errMessages = document.querySelectorAll('#error')
-
-    function toggleError() {
-        // Show error message
-        errMessages.forEach((el) => {
-            el.classList.toggle('hidden')
-        })
-
-        // Highlight input and label with red
-        const allBorders = document.querySelectorAll('.border-gray-200')
-        const allTexts = document.querySelectorAll('.text-gray-500')
-        allBorders.forEach((el) => {
-            el.classList.toggle('border-red-600')
-        })
-        allTexts.forEach((el) => {
-            el.classList.toggle('text-red-600')
-        })
-    }
-</script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Simulando la respuesta de inicio de sesión para fines de ejemplo
+        const loginResponse = {
+            message: 'Inicio de sesión exitoso',
+            accountType: 'contratista', // o 'talento'
+            username: 'Antonia Soto' // Este debería ser el nombre real del usuario
+        };
+    
+        // Establece el nombre del contratista en el campo de entrada
+        const inputField = document.getElementById('contractorName');
+        inputField.value = loginResponse.username;
+    
+        // Mueve la etiqueta si el campo tiene un valor
+        const label = inputField.nextElementSibling;
+        if (inputField.value) {
+            label.classList.add('shrink');
+        }
+    
+        // Establecer la fecha actual en el campo de fecha
+        const dateInput = document.getElementById('date');
+        const today = new Date();
+        const utcDate = new Date(today.toUTCString().split("GMT")[0] + " GMT"); // Convertir a UTC
+        const year = utcDate.getUTCFullYear();
+        const month = String(utcDate.getUTCMonth() + 1).padStart(2, '0');
+        const day = String(utcDate.getUTCDate()).padStart(2, '0');
+        dateInput.value = `${year}-${month}-${day}`; // Formato YYYY-MM-DD
+    
+        // Mueve la etiqueta del campo de fecha hacia arriba
+        dateInput.nextElementSibling.classList.add('shrink');
+    });
+    </script>
+    
 
 <style>
+
+input[type="checkbox"].peer:checked::after {
+    content: '✔'; /* Esto es la "X" */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px; /* Tamaño de la "X" */
+    width: 100%;
+    height: 70%;
+}
+
     .-z-1 {
         z-index: -1;
     }
