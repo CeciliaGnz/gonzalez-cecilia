@@ -1,8 +1,8 @@
-const express = require('express');
-const Job = require('../models/job');
-const Application = require('../models/application');
-const User = require('../models/user'); // Asegúrate de importar el modelo de usuario
-const { authenticateToken } = require('../middleware/auth');
+import express from 'express';
+import Job from '../models/job.js';
+import Application from '../models/application.js';
+import User from '../models/user.js';
+import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -62,4 +62,4 @@ router.get('/applications', authenticateToken, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
