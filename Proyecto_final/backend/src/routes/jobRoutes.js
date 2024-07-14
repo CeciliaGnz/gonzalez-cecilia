@@ -38,6 +38,13 @@ router.patch('/:id/applicants', authenticateToken, async (req, res) => {
     const job = await Job.findById(req.params.id);
     if (!job) return res.status(404).json({ message: 'Trabajo no encontrado' });
 
+    const validation = await Application.findOne({ job_id: job._id, talent_id: user._id});
+    if(validation)
+    {
+      throw  new Error("ya tiene un proseso de aplicacion a este trabajo.")
+      // res.status(500).json({ message: "Ya tiene un proseso de aplicacion a este trabajo."});
+    }
+    
     job.applicants.push({ talent_id: user._id, status });
     await job.save();
 
