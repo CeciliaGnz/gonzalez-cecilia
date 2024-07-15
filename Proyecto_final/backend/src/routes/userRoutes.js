@@ -1,8 +1,9 @@
-const express = require("express");
+import express from "express";
+import User from "../models/user.js"; // Importa el modelo de usuario
+import { generateToken } from "../middleware/auth.js";
+import bcrypt from 'bcryptjs';
+
 const router = express.Router();
-const User = require("../models/user"); // Importa el modelo de usuario si es necesario
-const { generateToken } = require("../middleware/auth");
-const bcrypt = require('bcryptjs');
 
 // Función para validar la complejidad de la contraseña
 function validatePassword(password) {
@@ -15,12 +16,9 @@ router.post("/", async (req, res) => {
   const { username, email, password, type } = req.body;
   // Verificar la complejidad de la contraseña
   if (!validatePassword(password)) {
-    return res
-      .status(400)
-      .json({
-        message:
-          "La contraseña debe tener al menos 8 caracteres, incluyendo una letra, un número y un símbolo.",
-      });
+    return res.status(400).json({
+      message: "La contraseña debe tener al menos 8 caracteres, incluyendo una letra, un número y un símbolo.",
+    });
   }
 
   try {
@@ -31,7 +29,7 @@ router.post("/", async (req, res) => {
     }
 
     // Crear y guardar el nuevo usuario
-    const newUser = new User({ username, email, password, type});
+    const newUser = new User({ username, email, password, type });
     await newUser.save();
     res.status(201).json(newUser);
   } catch (error) {
@@ -47,29 +45,23 @@ router.post("/login", async (req, res) => {
     // Buscar al usuario por correo electrónico
     const user = await User.findOne({ email });
     if (!user) {
-      return res
-        .status(400)
-        .json({ message: "Correo o contraseña incorrectos" });
+      return res.status(400).json({ message: "Correo o contraseña incorrectos" });
     }
 
     // Verificar la contraseña
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return res
-        .status(400)
-        .json({ message: "Correo o contraseña incorrectos" });
+      return res.status(400).json({ message: "Correo o contraseña incorrectos" });
     }
 
     const token = generateToken(user);
     // Redirigir según el tipo de cuenta
-    res
-      .status(200)
-      .json({
-        message: "Inicio de sesión exitoso",
-        type: user.type,
-        email: user.email,
-        token,
-      });
+    res.status(200).json({
+      message: "Inicio de sesión exitoso",
+      type: user.type,
+      email: user.email,
+      token,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -85,4 +77,5 @@ router.get("/", async (req, res) => {
   }
 });
 
-module.exports = router;
+// Exporta el router
+export default router;

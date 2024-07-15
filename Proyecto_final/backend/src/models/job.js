@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const jobSchema = new mongoose.Schema({
   contractor_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
@@ -16,6 +16,8 @@ const jobSchema = new mongoose.Schema({
   ]
 });
 
+
 const Job = mongoose.model('Job', jobSchema);
 
-module.exports = Job;
+export default Job;
+

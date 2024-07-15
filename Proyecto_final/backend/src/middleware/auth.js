@@ -1,12 +1,10 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/user');
-const { ObjectId } = require('mongodb');
+import jwt from 'jsonwebtoken';
+import User from '../models/user.js';
 
 const generateToken = (user) => {
-
   const payload = { password: user.password, email: user.email };
   const token = jwt.sign(payload, process.env.JWT_SECRET);
-  return token
+  return token;
 };
 
 const authenticateToken = (req, res, next) => {
@@ -22,4 +20,5 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-module.exports = { generateToken, authenticateToken };
+// Exporta como ES Module
+export { generateToken, authenticateToken };

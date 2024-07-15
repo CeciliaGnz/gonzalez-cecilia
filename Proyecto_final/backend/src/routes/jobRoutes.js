@@ -1,8 +1,8 @@
-const express = require('express');
-const Job = require('../models/job');
-const Application = require('../models/application');
-const User = require('../models/user'); // Asegúrate de importar el modelo de usuario
-const { authenticateToken } = require('../middleware/auth');
+import express from 'express';
+import Job from '../models/job.js';
+import Application from '../models/application.js';
+import User from '../models/user.js';
+import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -27,6 +27,33 @@ router.get('/contractor', authenticateToken, async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+// Create job
+// Create job
+// Create job
+router.post('/createJob', authenticateToken, async (req, res) => {
+  const { title, description, area, salary, programming_languages } = req.body;
+
+  const contractor_id = req.user._id;
+
+  try {
+    const newJob = new Job({
+      contractor_id,
+      title,
+      description,
+      area,
+      salary,
+      programming_languages, // Usar el nombre correcto
+    });
+
+    await newJob.save();
+    res.status(201).json(newJob);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+
 
 // Aplicar a un trabajo
 router.patch('/:id/applicants', authenticateToken, async (req, res) => {
@@ -69,4 +96,4 @@ router.get('/applications', authenticateToken, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
