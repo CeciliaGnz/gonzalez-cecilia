@@ -6,12 +6,13 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   profile: {
-    phone: { type: String },
-    company: { type: String },
-    nationality: { type: String }
+    phone: { type: String, default: '' },
+    company: { type: String, default: '' },
+    nationality: { type: String, default: '' }
   },
   type: { type: String, required: false }
 });
+
 
 // Encriptar contraseña antes de guardar
 userSchema.pre('save', async function(next) {

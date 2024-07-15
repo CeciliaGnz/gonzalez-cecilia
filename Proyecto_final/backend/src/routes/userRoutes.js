@@ -87,7 +87,7 @@ router.get('/me', authenticateToken, async (req, res) => {
   }
 });
 
-// Ruta para actualizar el perfil del usuario
+// Ruta para actualizar el perfil del usuario contratista
 router.put('/me', authenticateToken, async (req, res) => {
   const { phone, company, nationality, username } = req.body; // Campos editables
 
@@ -96,6 +96,26 @@ router.put('/me', authenticateToken, async (req, res) => {
       req.user._id,
       {
         profile: { phone, company, nationality },
+        username // Agregar el username aquí
+      },
+      { new: true, runValidators: true } // Devuelve el nuevo documento
+    ).select('-password');
+
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// Ruta para actualizar el perfil del talento
+router.put('/meTalent', authenticateToken, async (req, res) => {
+  const { phone, nationality, username } = req.body; // Campos editables
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        profile: { phone, nationality },
         username // Agregar el username aquí
       },
       { new: true, runValidators: true } // Devuelve el nuevo documento

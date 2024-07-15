@@ -7,7 +7,7 @@ const jobSchema = new mongoose.Schema({
   area: { type: String, required: true },
   programming_language: { type: String, required: true },
   salary: { type: Number, required: true },
-  status: { type: String, enum: ['open', 'in_process', 'completed'], default: 'open' },
+  status: { type: String, enum: ['open', 'in_process', 'completed'], default: 'open' }, //open y asignado
   applicants: [
     {
       talent_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
