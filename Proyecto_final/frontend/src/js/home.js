@@ -245,22 +245,12 @@
                 App.htmlElements.jobsContainer.innerHTML = '';
                 jobs.forEach(job => {
                     const jobCard = `
-<<<<<<< HEAD
-                        <div class="mb-6 p-4 bg-purple-100 rounded shadow text-black">
-                            <h2 class="text-xl font-bold mb-2">${job.title}</h2>
-                            <p class="mb-2">${job.description}</p>
-                            <div class="flex justify-between items-center">
-                                <button class="bg-purple-600 text-white p-2 rounded hover:bg-purple-400">Postular perfil</button>
-                                <a href="#" class="text-purple-400 hover:underline">Ver más información</a>
-                            </div>
-=======
                     <div class="mb-6 p-4 bg-white rounded shadow">
                         <h2 class="text-xl font-bold mb-2">${job.title}</h2>
                         <p class="mb-2">${job.description}</p>
                         <div class="flex justify-between items-center">
                             <button class="postular bg-blue-500 text-white p-2 rounded hover:bg-blue-700" data-job-id="${job._id}">Postular perfil</button>
                             <a href="#" class="ver-mas-info text-blue-500 hover:underline" data-job-id="${job._id}">Ver más información</a>
->>>>>>> 74ad4e4905d95e93c6413a3179899d782611d4fe
                         </div>
                         <div class="detalles-trabajo hidden mt-4" id="detalles-${job._id}">
                             <p><strong>Programming Languages:</strong> ${job.programming_language}</p>
