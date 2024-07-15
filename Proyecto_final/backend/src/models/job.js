@@ -11,7 +11,7 @@ const jobSchema = new mongoose.Schema({
   applicants: [
     {
       talent_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-      status: { type: String, enum: ['in_process', 'rejected', 'accepted'], default: 'in_process' }
+      status: { type: String, enum: ['pending', 'rejected', 'accepted'], default: 'pending' }
     }
   ]
 });
