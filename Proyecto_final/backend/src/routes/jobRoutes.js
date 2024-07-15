@@ -9,7 +9,7 @@ const router = express.Router();
 // Devolver todos los registros jobs
 router.get('/', authenticateToken, async (req, res) => {
   try {
-    const jobs = await Job.find();
+    const jobs = await Job.find({status: 'open'});
     res.json(jobs);
   } catch (error) {
     res.status(500).json({ message: error.message });
