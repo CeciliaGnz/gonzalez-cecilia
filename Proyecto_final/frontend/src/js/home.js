@@ -80,7 +80,7 @@
                     const result = await response.json();
                     console.log(result.message);
                     alert('Postulación exitosa');
-                    window.location.href = 'index.html';
+                    window.location.href = 'profileFree.html?tab=2';
 
                 } catch (error) {
                     console.error('Error al aplicar al trabajo:', error.message);
@@ -94,7 +94,7 @@
             },
             handleProfile(event) {
                 event.preventDefault();
-                window.location.href = 'index.html';
+                window.location.href = 'profileFree.html';
             },
             handleSearch(event) {
                 App.data.searchQuery = event.target.value;

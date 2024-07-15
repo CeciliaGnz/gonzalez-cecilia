@@ -7,7 +7,23 @@
 </head>
 <body class="bg-gray-100">
 
-    <div id="nav-placeholder"></div>
+    <header class="bg-gray-900 text-white p-4 flex justify-between items-center">
+        <div class="logo"><img src="../src/img/Lancer.png" class="h-12"></div>
+        <nav>
+          <ul class="flex space-x-4">
+            <li><a href="#" class="hover:text-gray-300">Inicio</a></li>
+            <li><a href="../html/nosotros.html" class="hover:text-gray-300">Nosotros</a></li>
+            <li><a href="../html/home.html" class="hover:text-gray-300">Busco trabajo</a></li>
+          </ul>
+        </nav>
+        <div class="relative">
+          <span id="user-email" class="ml-4 cursor-pointer">Email  ▼</span>
+          <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded shadow-md">
+            <a href="#" id="profile-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100"> Mi Perfil</a>
+            <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Cerrar sesión</a>
+          </div>
+        </div>
+      </header>
 
     <div class="w-full max-w-screen-lg mx-auto pt-8">
         <div class="flex border-b border-purple-300">
@@ -112,22 +128,7 @@
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
-
-<script>
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].classList.add("hidden");
-        }
-        tablinks = document.getElementsByTagName("button");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("active:bg-purple-200");
-        }
-        document.getElementById(tabName).classList.remove("hidden");
-        evt.currentTarget.classList.add("active:bg-purple-200");
-    }
-</script>
+<script src="../src/js/porfileFree.js"></script>
 
 
 

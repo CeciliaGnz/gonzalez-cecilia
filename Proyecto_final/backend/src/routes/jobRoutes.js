@@ -21,15 +21,34 @@ router.get('/contractor', authenticateToken, async (req, res) => {
   try {
     const userEmail = req.user.email;
     const user = await User.findOne({ email: userEmail });
-    const jobs = await Job.find({ contractor_id: user._id });
+    const jobs = await Job.find({ contractor_id: user._id }).lean();
+
+    // Obtener los datos de los talentos
+    const talentIds = jobs.flatMap(job => job.applicants.map(applicant => applicant.talent_id));
+    const uniqueTalentIds = [...new Set(talentIds)];
+    const talents = await User.find({ _id: { $in: uniqueTalentIds } }).select('_id username');
+
+    // Mapear los talentos a sus IDs
+    const talentMap = {};
+    talents.forEach(talent => {
+      talentMap[talent._id] = talent.username;
+    });
+
+    // Añadir el nombre del talento a los postulantes
+    jobs.forEach(job => {
+      job.applicants = job.applicants.map(applicant => ({
+        ...applicant,
+        name: talentMap[applicant.talent_id] || 'Unknown'
+      }));
+    });
+
     res.json(jobs);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-// Create job
-// Create job
+
 // Create job
 router.post('/createJob', authenticateToken, async (req, res) => {
   const { title, description, area, salary, programming_language } = req.body;
