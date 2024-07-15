@@ -32,7 +32,7 @@ router.get('/contractor', authenticateToken, async (req, res) => {
 // Create job
 // Create job
 router.post('/createJob', authenticateToken, async (req, res) => {
-  const { title, description, area, salary, programming_languages } = req.body;
+  const { title, description, area, salary, programming_language } = req.body;
 
   const contractor_id = req.user._id;
 
@@ -43,7 +43,7 @@ router.post('/createJob', authenticateToken, async (req, res) => {
       description,
       area,
       salary,
-      programming_languages, // Usar el nombre correcto
+      programming_language, 
     });
 
     await newJob.save();
