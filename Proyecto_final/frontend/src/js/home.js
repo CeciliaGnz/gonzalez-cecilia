@@ -146,14 +146,14 @@
                     const jobs = await response.json();
 
                     // Generar lista de áreas
-                    const areas = [...new Set(jobs.map(job => job.area))];
+                    const areas = [...new Set(jobs.map(job => job.area.trim().toLowerCase()))];
 
                     // Generar lista de lenguajes de programación
                     let languagesSet = new Set();
                     jobs.forEach(job => {
                         if (job.programming_language) {
                             job.programming_language.split(',').forEach(lang => {
-                                languagesSet.add(lang.trim());
+                                languagesSet.add(lang.trim().toLowerCase());
                             });
                         }
                     });
@@ -189,14 +189,14 @@
                 // Filtro de área
                 if (filters.area.length) {
                     filteredJobs = filteredJobs.filter(job =>
-                        filters.area.includes(job.area)
+                        filters.area.includes(job.area.trim().toLowerCase())
                     );
                 }
             
                 // Filtro de idioma
                 if (filters.language.length) {
                     filteredJobs = filteredJobs.filter(job =>
-                        job.programming_language && filters.language.some(language => job.programming_language.includes(language))
+                        job.programming_language && filters.language.some(language => job.programming_language.trim().toLowerCase().includes(language))
                     );
                 }
             
