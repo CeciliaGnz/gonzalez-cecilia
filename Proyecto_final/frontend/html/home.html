@@ -14,18 +14,20 @@
         <img src="../src/img/Lancer.png" class="h-12 rounded-full ml-5">
     </div>
     <nav>
-        <ul class="flex space-x-14">
-            <li><a href="" class="hover:text-purple-400">Inicio</a></li>
-            <li><a href="" class="hover:text-purple-400">Nosotros</a></li>
-        </ul>
+      <ul class="flex space-x-4">
+        <li><a href="#" class="hover:text-gray-300">Inicio</a></li>
+        <li><a href="../html/nosotros.html" class="hover:text-gray-300">Nosotros</a></li>
+        <li><a href="../html/home.html" class="hover:text-gray-300">Busco trabajo</a></li>
+        <li><a href="../html/profileFree.html" class="hover:text-gray-300">Mi perfil</a></li>
+      </ul>
     </nav>
     <div class="relative">
-        <input type="text" id="search-input" class="rounded p-2 bg-purple-400 text-white placeholder:text-white" placeholder="Búsqueda">
-        <span id="user-email" class="ml-4 cursor-pointer">Alexis Rodríguez ▼</span>
-        <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded shadow-md">
-            <a href="#" id="profile-btn" class="block px-4 py-2 text-gray-600 hover:bg-gray-100"> Mi Perfil</a>
-            <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Cerrar sesión</a>
-        </div>
+      <input type="text" id="search-input" class="rounded p-2 text-gray-500" placeholder="Búsqueda">
+      <span id="user-email" class="ml-4 cursor-pointer">Email  ▼</span>
+      <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded shadow-md">
+        <a href="#" id="profile-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100"> Mi Perfil</a>
+        <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Cerrar sesión</a>
+      </div>
     </div>
 </header>
 
@@ -33,26 +35,16 @@
   <main class="p-8">
     <aside class="w-1/4 float-left p-4 bg-purple-100 rounded ">
       <h2 class="font-bold mb-2">Filtrar vacantes por área:</h2>
-      <div class="mb-4">
-        <label><input type="checkbox" name="area" value="Diseño UX/UI" class="mr-2 filter-checkbox">Diseño
-          UX/UI</label><br>
-        <label><input type="checkbox" name="area" value="Desarrollo web" class="mr-2 filter-checkbox">Desarrollo
-          web</label><br>
-        <label><input type="checkbox" name="area" value="Desarrollo movil" class="mr-2 filter-checkbox">Desarrollo
-          móvil</label><br>
-        <label><input type="checkbox" name="area" value="Desarrollo de videojuegos"
-            class="mr-2 filter-checkbox">Desarrollo de videojuegos</label>
+      <div class="mb-4" id="areaFilter">
+        <!-- Los filtros de area se insertarán aquí -->
       </div>
       <h2 class="font-bold mb-2">Filtrar vacantes por lenguaje de programación:</h2>
-      <div class="mb-4">
-        <label><input type="checkbox" name="language" value="Javascript"
-            class="mr-2 filter-checkbox">Javascript</label><br>
-        <label><input type="checkbox" name="language" value="Ruby" class="mr-2 filter-checkbox">Ruby</label><br>
-        <label><input type="checkbox" name="language" value="Python" class="mr-2 filter-checkbox">Python</label>
+      <div class="mb-4" id="languageFilter">
+        <!-- Los filtros de lenguaje se insertarán aquí -->
       </div>
       <h2 class="font-bold mb-2">Filtrar vacantes por salario/hora:</h2>
-      <div>
-        <label><input type="checkbox" name="salary" value="40-50" class="mr-2 filter-checkbox">40 - 50/hr</label>
+      <div class="mb-4" id="salaryFilter">
+        <!-- Los filtros de salario se insertarán aquí -->
       </div>
     </aside>
 

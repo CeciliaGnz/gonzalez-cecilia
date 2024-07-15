@@ -1,13 +1,23 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  profile: {type: Object, required: false},
-  type: {type: String, required: false}
+  profile: {
+    phone: { type: String, default: '' },
+    company: { type: String, default: '' },
+    nationality: { type: String, default: '' },
+    education: { type: String, default: ''}, // education
+    skills: { type: String, default: ''}, // Habilidades
+    languages: { type: String, default: ''}, // Idiomas
+    portfolio: { type: String, default: '' }, // URL del portafolio
+    linkedin: { type: String, default: '' } // URL de LinkedIn
+  },
+  type: { type: String, required: false }
 });
+
 
 // Encriptar contraseña antes de guardar
 userSchema.pre('save', async function(next) {
@@ -19,4 +29,4 @@ userSchema.pre('save', async function(next) {
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+export default User;

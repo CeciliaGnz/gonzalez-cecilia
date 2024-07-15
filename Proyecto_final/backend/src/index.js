@@ -1,21 +1,35 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const path = require('path');
-//const userRoutes = require('../src/models/userRoutes');
+import express from 'express';
+import morgan from "morgan";
+import mongoose from 'mongoose';
+import cors from 'cors';
+import path from 'path';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+import { PORT } from './config.js';
+import userRoutes from './routes/userRoutes.js';
+import jobRoutes from './routes/jobRoutes.js';
+import paymentRoutes from './routes/payment.routes.js';
+
+// Obtener __filename y __dirname en un módulo ES
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Configurar dotenv
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 // Middleware CORS y JSON parsing
 app.use(cors());
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Configuración para servir archivos estáticos (CSS, HTML, JS)
 app.use(express.static(path.join(__dirname, '../../frontend')));
+app.use(express.static(path.resolve("./src/public")));
 
 // Conectar a MongoDB
 const mongoURI = process.env.MONGO_URI;
@@ -25,21 +39,20 @@ mongoose.connect(mongoURI)
   .catch(err => console.error('Error al conectar a MongoDB:', err));
 
 // Rutas de usuario
-const userRoutes = require('../src/routes/userRoutes');
 app.use('/api/users', userRoutes);
 
 // Rutas de trabajos
-const jobRoutes = require('../src/routes/jobRoutes');
 app.use('/api/jobs', jobRoutes);
 
-// Rutas de ejemplo
+// Rutas de pagos
+app.use('/api/payments', paymentRoutes);
+
+// Ruta de ejemplo
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../../frontend/html/registro.html'));
 });
 
 // Iniciar el servidor
-app.listen(port, () => {
-  console.log(`Servidor escuchando en http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
-
-

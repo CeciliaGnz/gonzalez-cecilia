@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const jobSchema = new mongoose.Schema({
   contractor_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
@@ -7,15 +7,17 @@ const jobSchema = new mongoose.Schema({
   area: { type: String, required: true },
   programming_language: { type: String, required: true },
   salary: { type: Number, required: true },
-  status: { type: String, enum: ['open', 'in_process', 'completed'], default: 'open' },
+  status: { type: String, enum: ['open', 'in_process', 'completed'], default: 'open' }, //open y asignado
   applicants: [
     {
       talent_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-      status: { type: String, enum: ['in_process', 'rejected', 'accepted'], default: 'in_process' }
+      status: { type: String, enum: ['pending', 'rejected', 'accepted'], default: 'pending' }
     }
   ]
 });
 
+
 const Job = mongoose.model('Job', jobSchema);
 
-module.exports = Job;
+export default Job;
+

@@ -23,7 +23,7 @@ document.querySelector('form').addEventListener('submit', async function(event) 
             window.location.href = '../html/home.html';
             }
         else{
-            window.location.href = '../html/index.html';
+            window.location.href = '../html/profileContractor.html';
         }
     } else {
         alert('Error: ' + result.message);
