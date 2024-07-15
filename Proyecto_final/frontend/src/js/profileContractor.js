@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         userEmail.textContent = currentUser.email;
         fetchUserProfile(); // Fetch user profile on load
+        fetchJobs(); // Fetch jobs on load
     }
 
     // Logout functionality
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function populateProfile(user) {
-        console.log(user); // Verifica el objeto 'user'
+        console.log(user);
 
         document.getElementById('email').value = user.email;
         document.getElementById('profile-email').textContent = user.email || '';
@@ -133,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayJobs(jobs) {
         const jobsList = document.querySelector('.accordion');
         jobsList.innerHTML = jobs.length ? jobs.map(job => `
-            <li class="cursor-pointer m-6">
+            <li class="cursor-pointer m-6" data-job-id="${job.id}">
                 <span class="font-bold text-xl tracking-tight text-purple-500 flex justify-between items-center">
                     <p>Título: <span>${job.title}</span></p>
                     <span class="flex items-center">
@@ -146,11 +147,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="text-gray-500 text-md p-2 hidden">
                     <ul class="space-y-4">
                         ${job.applicants.length ? job.applicants.map(applicant => `
-                            <li class="flex justify-between items-center">
+                            <li class="flex justify-between items-center" data-applicant-id="${applicant.id}">
                                 <span>${applicant.name} - Postulado el ${new Date(applicant.date).toLocaleDateString()}</span>
                                 <div class="flex space-x-2">
                                     <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Ver perfil</button>
-                                    <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700" onclick="aceptarPostulante(this)">Aceptar postulante</button>
+                                    <button 
+    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700" 
+    onclick="aceptarPostulante(this)" 
+    data-job-id="${job.id}" 
+    data-applicant-id="${applicant.id}">
+    Aceptar postulante
+</button>
+
                                 </div>
                             </li>
                         `).join('') : '<li class="text-center text-gray-500">Sin postulantes por ahora.</li>'}
@@ -158,11 +166,78 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </li>
         `).join('') : '<p class="text-center text-gray-500">No tienes trabajos creados.</p>';
-    }
 
-    // Initial fetch call for jobs
-    fetchJobs();
+        // Agregar eventos de clic al acordeón
+        document.querySelectorAll('.accordion li').forEach(li => {
+            li.addEventListener('click', function() {
+                const content = this.querySelector('div');
+                if (content) {
+                    content.classList.toggle('hidden');
+                }
+            });
+        });
+    }
+    
+
+    // Accept applicant function
+    window.aceptarPostulante = async function(button) {
+        if (confirm("¿Está seguro de que desea aceptar a este postulante? Esto rechazará a todos los demás postulantes.")) {
+            const applicantLi = button.closest('li'); // li del postulante
+            const acceptedApplicantId = button.dataset.applicantId; // ID del postulante
+            const jobId = button.dataset.jobId; // ID del trabajo
+    
+            console.log('Job ID:', jobId); // Verifica el ID del trabajo
+    
+            // Verifica si tenemos ambos IDs
+            if (!acceptedApplicantId || !jobId) {
+                alert('No se pudo obtener el ID del postulante o del trabajo.');
+                return;
+            }
+    
+            // Llamar al API para aceptar el postulante
+            try {
+                const response = await fetch(`/api/jobs/${jobId}/acceptApplicant`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ acceptedApplicantId })
+                });
+    
+                if (response.ok) {
+                    // Actualiza el DOM
+                    applicantLi.innerHTML = `
+                        <span class="font-semibold text-lg tracking-tight text-gray-500">
+                            Persona encargada: <span>${applicantLi.querySelector('span').textContent.split(' - ')[0]}</span>
+                        </span>
+                    `;
+                    
+                    // Elimina los demás postulantes
+                    const jobLi = applicantLi.closest('.accordion').querySelector('li[data-job-id]');
+                    const applicantsList = jobLi.querySelector('div ul');
+                    const remainingApplicants = applicantsList.querySelectorAll('li');
+    
+                    remainingApplicants.forEach(li => {
+                        if (li !== applicantLi) {
+                            li.remove();
+                        }
+                    });
+    
+                    alert('Postulante aceptado exitosamente.');
+                } else {
+                    alert('Error al aceptar al postulante.');
+                }
+            } catch (error) {
+                console.error('Error accepting applicant:', error);
+            }
+        }
+    };
+    
+    
+
 });
+
 
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
@@ -178,24 +253,6 @@ function openTab(evt, tabName) {
     evt.currentTarget.classList.add("active:bg-purple-200");
 }
 
-// Function to accept an applicant
-function aceptarPostulante(button) {
-    if (confirm("¿Está seguro de que desea aceptar a este postulante? Esto rechazará a todos los demás postulantes.")) {
-        const li = button.closest('li');
-        li.innerHTML = `
-            <span class="font-semibold text-lg tracking-tight text-gray-500 flex justify-between items-center">
-                <p>Persona encargada: <span>${li.querySelector('span').textContent.split(' - ')[0]}</span></p>
-            </span>
-        `;
-        const ul = li.closest('ul');
-        const lis = ul.querySelectorAll('li');
-        lis.forEach(l => {
-            if (l !== li) {
-                l.remove();
-            }
-        });
-    }
-}
 
 // Accordion functionality
 $(document).on('click', '.accordion li', function() {

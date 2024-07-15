@@ -14,6 +14,7 @@
             <li><a href="#" class="hover:text-gray-300">Inicio</a></li>
             <li><a href="../html/nosotros.html" class="hover:text-gray-300">Nosotros</a></li>
             <li><a href="../html/home.html" class="hover:text-gray-300">Busco trabajo</a></li>
+            <li><a href="../html/profileFree.html" class="hover:text-gray-300">Mi perfil</a></li>
           </ul>
         </nav>
         <div class="relative">
@@ -28,7 +29,7 @@
     <div class="w-full max-w-screen-lg mx-auto pt-8">
         <div class="flex border-b border-purple-300">
             <button id="btn-tab1" class="w-1/2 py-4 text-center font-medium text-purple-700 bg-gray-100 rounded-tl-lg focus:outline-none active:bg-purple-200" onclick="openTab(event, 'tab1')">Editar perfil</button>
-            <button id="btn-tab2" class="w-1/2 py-4 text-center font-medium text-purple-700 bg-gray-100 rounded-tr-lg focus:outline-none" onclick="openTab(event, 'tab2')">Ver mis trabajos creados</button>
+            <button id="btn-tab2" class="w-1/2 py-4 text-center font-medium text-purple-700 bg-gray-100 rounded-tr-lg focus:outline-none" onclick="openTab(event, 'tab2')">Ver mis postulaciones</button>
         </div>
         <div id="tab1" class="tabcontent">
             <h2 class="text-2xl font-bold text-purple-800 pt-4">Bienvenid@ <span id="welcome-profile-name">Nombre apellido</span></h2>
@@ -103,19 +104,61 @@
                                     </div>
                                 </div>
 
-                                <!-- Guardar Cambios -->
-                                <div class="mt-8 flex justify-end">
-                                    <button class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 mr-2">Descargar HV en PDF</button>
-                                    
-                                    <button id="save-changes-btn" class="bg-purple-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-purple-700">Guardar Cambios</button>
-                                </div>
-                                
-                            </div>
+                                <!-- Sección de Educación -->
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold text-gray-700 mb-6">Educación</h2>
+                    <div class="grid grid-cols-1 gap-4">
+                        <div>
+                            <label for="education" class="block text-gray-700 mb-1">Institución y grado</label>
+                            <input type="text" id="education" class="w-full rounded-lg border py-2 px-3">
                         </div>
                     </div>
-                </section>
+                </div>
+
+              <!-- Sección de Habilidades e Idiomas -->
+<div class="mb-6 grid grid-cols-2 gap-4">
+    <!-- Habilidades -->
+    <div>
+        <h2 class="text-xl font-semibold text-gray-700 mb-2">Habilidades</h2>
+        <input type="text" id="skills" class="w-full rounded-lg border py-2 px-3" placeholder="Ej: JavaScript, Python, Diseño Gráfico">
+    </div>
+
+    <!-- Idiomas -->
+    <div>
+        <h2 class="text-xl font-semibold text-gray-700 mb-2">Idiomas</h2>
+        <input type="text" id="languages" class="w-full rounded-lg border py-2 px-3" placeholder="Ej: Inglés, Español">
+    </div>
+</div>
+
+<!-- Sección de Portafolio y LinkedIn -->
+<div class="mb-6 grid grid-cols-2 gap-4">
+    <!-- Portafolio -->
+    <div>
+        <h2 class="text-xl font-semibold text-gray-700 mb-2">Portafolio</h2>
+        <input type="url" id="portfolio" class="w-full rounded-lg border py-2 px-3" placeholder="URL de tu portafolio">
+    </div>
+
+    <!-- LinkedIn -->
+    <div>
+        <h2 class="text-xl font-semibold text-gray-700 mb-2">LinkedIn</h2>
+        <input type="url" id="linkedin" class="w-full rounded-lg border py-2 px-3" placeholder="URL de tu perfil de LinkedIn">
+    </div>
+</div>
+
+
+            <!-- Guardar Cambios -->
+            <div class="mt-8 flex justify-end">
+                <button class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 mr-2">Ver mi perfil de postulante</button>
+                
+                <button id="save-changes-btn" class="bg-purple-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-purple-700">Guardar Cambios</button>
             </div>
+            
         </div>
+    </div>
+</div>
+</section>
+</div>
+</div>
 
         <div id="tab2" class="tabcontent p-4 hidden">
             <div class="flex justify-between items-center">
@@ -135,5 +178,5 @@
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
-<script src="../src/js/porfileFree.js"></script>
+<script src="../src/js/profileFree.js"></script>
 </html>

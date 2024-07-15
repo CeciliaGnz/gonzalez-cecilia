@@ -109,13 +109,21 @@ router.put('/me', authenticateToken, async (req, res) => {
 
 // Ruta para actualizar el perfil del talento
 router.put('/meTalent', authenticateToken, async (req, res) => {
-  const { phone, nationality, username } = req.body; // Campos editables
+  const { phone, nationality, username, education, skills, languages, portfolio, linkedin } = req.body; // Campos editables
 
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.user._id,
       {
-        profile: { phone, nationality },
+        profile: { 
+          phone, 
+          nationality, 
+          skills,  
+          education,      
+          languages,     
+          portfolio,    
+          linkedin       
+        },
         username // Agregar el username aquí
       },
       { new: true, runValidators: true } // Devuelve el nuevo documento
@@ -126,6 +134,7 @@ router.put('/meTalent', authenticateToken, async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
 
 
 

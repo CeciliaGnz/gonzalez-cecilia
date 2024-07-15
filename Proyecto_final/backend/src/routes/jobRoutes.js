@@ -2,6 +2,7 @@ import express from 'express';
 import Job from '../models/job.js';
 import Application from '../models/application.js';
 import User from '../models/user.js';
+
 import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
@@ -16,6 +17,7 @@ router.get('/', authenticateToken, async (req, res) => {
   }
 });
 
+// Extraer todos los jobs de un contractor
 // Extraer todos los jobs de un contractor
 router.get('/contractor', authenticateToken, async (req, res) => {
   try {
@@ -34,11 +36,12 @@ router.get('/contractor', authenticateToken, async (req, res) => {
       talentMap[talent._id] = talent.username;
     });
 
-    // Añadir el nombre del talento a los postulantes
+    // Añadir el nombre y la fecha del talento a los postulantes
     jobs.forEach(job => {
       job.applicants = job.applicants.map(applicant => ({
         ...applicant,
-        name: talentMap[applicant.talent_id] || 'Unknown'
+        name: talentMap[applicant.talent_id] || 'Unknown',
+        date: applicant.date // Asegúrate de incluir la fecha
       }));
     });
 
@@ -47,6 +50,7 @@ router.get('/contractor', authenticateToken, async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 
 // Create job
@@ -108,11 +112,86 @@ router.get('/applications', authenticateToken, async (req, res) => {
   try {
     const userEmail = req.user.email;
     const user = await User.findOne({ email: userEmail });
-    const applications = await Application.find({ talent_id: user._id });
+
+    // Obtener las aplicaciones con detalles del trabajo y del contratista
+    const applications = await Application.find({ talent_id: user._id })
+  .populate({
+    path: 'job_id',
+    select: 'title contractor_id',
+    match: { status: 'open' }, // Solo trabajos abiertos
+    populate: {
+      path: 'contractor_id',
+      select: 'username'
+    }
+  });
+
+
     res.json(applications);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
+
+
+// Eliminar una aplicación
+router.delete('/applications/:id', authenticateToken, async (req, res) => {
+  try {
+    const applicationId = req.params.id;
+    const userEmail = req.user.email;
+    const user = await User.findOne({ email: userEmail });
+
+    // Verificar que la aplicación pertenezca al usuario
+    const application = await Application.findOne({ _id: applicationId, talent_id: user._id });
+    if (!application) {
+      return res.status(404).json({ message: 'Postulación no encontrada' });
+    }
+
+    // Eliminar la aplicación
+    await Application.findByIdAndDelete(applicationId);
+    
+    // También puedes eliminarla del trabajo (opcional)
+    await Job.updateOne(
+      { _id: application.job_id },
+      { $pull: { applicants: { talent_id: user._id } } }
+    );
+
+    res.json({ message: 'Postulación eliminada con éxito' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Aceptar un postulante
+// Aceptar un postulante
+router.patch('/:id/acceptApplicant', authenticateToken, async (req, res) => {
+  try {
+      const { acceptedApplicantId } = req.body;
+      const job = await Job.findById(req.params.id);
+      if (!job) return res.status(404).json({ message: 'Trabajo no encontrado' });
+
+      // Cambiar el estado del postulante aceptado a "accepted"
+      const applicantIndex = job.applicants.findIndex(applicant => applicant.talent_id.toString() === acceptedApplicantId);
+      if (applicantIndex !== -1) {
+          job.applicants[applicantIndex].status = 'accepted';
+      }
+
+      // Cambiar el estado de los demás postulantes a "rejected"
+      job.applicants.forEach((applicant, index) => {
+          if (index !== applicantIndex) {
+              applicant.status = 'rejected';
+          }
+      });
+
+      // Cambiar el estado del trabajo a "completed"
+      job.status = 'completed';
+
+      await job.save();
+      res.json({ message: 'Estado de postulantes y trabajo actualizado.' });
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+});
+
+
 
 export default router;

@@ -8,7 +8,11 @@ const userSchema = new mongoose.Schema({
   profile: {
     phone: { type: String, default: '' },
     company: { type: String, default: '' },
-    nationality: { type: String, default: '' }
+    nationality: { type: String, default: '' },
+    skills: { type: String, default: ''}, // Habilidades
+    languages: { type: String, default: ''}, // Idiomas
+    portfolio: { type: String, default: '' }, // URL del portafolio
+    linkedin: { type: String, default: '' } // URL de LinkedIn
   },
   type: { type: String, required: false }
 });
