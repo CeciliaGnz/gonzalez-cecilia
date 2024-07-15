@@ -26,3 +26,4 @@ export const HOST =
   process.env.NODE_ENV === "production"
     ? process.env.HOST
     : "http://localhost:" + PORT;
+    console.log("entre a envhost ", PORT);

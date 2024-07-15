@@ -47,7 +47,7 @@ app.use('/api/jobs', jobRoutes);
 // Rutas de pagos
 app.use('/api/payments', paymentRoutes);
 
-// Rutas de ejemplo
+// Ruta de ejemplo
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../../frontend/html/registro.html'));
 });

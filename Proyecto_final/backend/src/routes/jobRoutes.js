@@ -28,6 +28,33 @@ router.get('/contractor', authenticateToken, async (req, res) => {
   }
 });
 
+// Create job
+// Create job
+// Create job
+router.post('/createJob', authenticateToken, async (req, res) => {
+  const { title, description, area, salary, programming_languages } = req.body;
+
+  const contractor_id = req.user._id;
+
+  try {
+    const newJob = new Job({
+      contractor_id,
+      title,
+      description,
+      area,
+      salary,
+      programming_languages, // Usar el nombre correcto
+    });
+
+    await newJob.save();
+    res.status(201).json(newJob);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+
+
 // Aplicar a un trabajo
 router.patch('/:id/applicants', authenticateToken, async (req, res) => {
   try {
