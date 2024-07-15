@@ -11,6 +11,6 @@ console.log("Entre a payment routes")
 
 router.post("/create-order", createOrder);
 router.get("/capture-order", captureOrder);
-router.get("/cancel-order", cancelPayment);
+router.get("/cancel-payment", cancelPayment);
 
 export default router;

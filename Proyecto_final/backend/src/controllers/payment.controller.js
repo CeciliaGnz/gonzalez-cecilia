@@ -94,4 +94,4 @@ export const captureOrder = async (req, res) => {
   }
 };
 
-export const cancelPayment = (req, res) => res.redirect("/");//debe regresar al tab2 de profileContractor
+export const cancelPayment = (req, res) => res.redirect("/api/jobs");//debe regresar al tab2 de profileContractor

@@ -5,7 +5,7 @@ const jobSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   area: { type: String, required: true },
-  programming_languages: { type: [String], required: true }, // Cambiado a array
+  programming_language: { type: String, required: true },
   salary: { type: Number, required: true },
   status: { type: String, enum: ['open', 'in_process', 'completed'], default: 'open' },
   applicants: [

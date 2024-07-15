@@ -39,11 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Obtener lenguajes de programación seleccionados como array
-        const programmingLanguages = Array.from(formData.getAll('programming_language')).filter(lang => lang);
+        // Obtener lenguajes de programación seleccionados como string delimitado por comas
+        const programmingLanguages = Array.from(formData.getAll('programming_language')).filter(lang => lang).join(', ');
 
         // Validar si al menos un lenguaje de programación ha sido seleccionado
-        if (programmingLanguages.length === 0) {
+        if (!programmingLanguages) {
             alert('Por favor selecciona al menos un lenguaje de programación.');
             return;
         }
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
             description: description,
             area: area,
             salary: salary,
-            programming_languages: programmingLanguages // Array de lenguajes de programación
+            programming_language: programmingLanguages // String de lenguajes de programación
         };
 
         // Obtener el token de sessionStorage
