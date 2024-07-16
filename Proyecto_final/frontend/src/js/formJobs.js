@@ -50,14 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const jobData = {
-            title: title,
-            description: description,
-            area: area,
-            salary: salary,
-            programming_language: programmingLanguages 
-        };
-
         const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
         const token = currentUser ? currentUser.token : null;
 
@@ -66,23 +58,46 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        const jobData = {
+            title: title,
+            description: description,
+            area: area,
+            salary: salary,
+            programming_language: programmingLanguages,
+            contractor_id : currentUser.email
+        };
+
+        // creaccion de pago
         try {
-            const response = await fetch('/api/jobs/createJob', {
-                method: 'POST', 
-                headers: {
+
+            await fetch('http://localhost:3000/api/jobs/createJob', {
+                 method: 'POST', 
+                 headers: {
                     'Authorization': `Bearer ${token}`,  
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jobData)
+                     'Content-Type': 'application/json'
+            },
+                 body: JSON.stringify(jobData)
             });
 
-            if (response.ok) {
-                alert('Trabajo creado exitosamente.');
-                window.location.href = '/api/payments/create-order'; 
-            } else {
-                const errorData = await response.json();
-                alert('Error al crear el trabajo: ' + errorData.message);
-            }
+            // Crear el orden
+            await fetch('http://localhost:3000/api/payments/create-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.approval_url) {
+                // Redirigir al usuario a PayPal para aprobar el pago
+                window.location.href = data.approval_url;
+                } else {
+                alert('Error creando pago')
+                }
+            })
+            .catch(error => console.error('Error:', error));
         } catch (error) {
             console.error('Error:', error);
             alert('Error en la conexión. Por favor, inténtalo de nuevo.');

@@ -21,6 +21,7 @@
     "mongoose": "^8.4.4",
     "morgan": "^1.10.0",
     "node-fetch": "^3.3.2",
+    "paypal-rest-sdk": "^1.8.1",
     "pdfkit": "^0.15.0"
   },
   "devDependencies": {
