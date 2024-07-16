@@ -125,7 +125,6 @@ router.patch('/:id/applicants', authenticateToken, async (req, res) => {
 });
 
 
-// Extraer todas las aplicaciones de un talento
 router.get('/applications', authenticateToken, async (req, res) => {
   try {
     const userEmail = req.user.email;
@@ -133,22 +132,22 @@ router.get('/applications', authenticateToken, async (req, res) => {
 
     // Obtener las aplicaciones con detalles del trabajo y del contratista
     const applications = await Application.find({ talent_id: user._id })
-  .populate({
-    path: 'job_id',
-    select: 'title contractor_id',
-    match: { status: 'open' }, // Solo trabajos abiertos
-    populate: {
-      path: 'contractor_id',
-      select: 'username'
-    }
-  });
-
+      .populate({
+        path: 'job_id',
+        select: 'title contractor_id',
+        match: { $or: [{ status: 'open' }, { status: 'completed' }] }, // Trabajos abiertos o completados
+        populate: {
+          path: 'contractor_id',
+          select: 'username'
+        }
+      });
 
     res.json(applications);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 
 // Eliminar una aplicación

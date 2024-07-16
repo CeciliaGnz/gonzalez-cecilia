@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayJobs(jobs) {
         const jobsList = document.querySelector('.accordion');
         jobsList.innerHTML = jobs.length ? jobs.map(job => `
-            <li class="cursor-pointer m-3" data-job-id="${job.id}">
+            <li class="cursor-pointer m-3" data-job-id="${job._id}">
                 <span class="font-bold text-xl tracking-tight text-purple-500 flex justify-between items-center">
                     <p>Título: <span>${job.title}</span></p>
                     <span class="flex items-center">
@@ -145,15 +145,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="text-gray-500 text-md p-2 hidden">
                     <ul class="space-y-4">
                         ${job.applicants.length ? job.applicants.map(applicant => `
-                            <li class="flex justify-between items-center" data-applicant-id="${applicant.id}">
+                            <li class="flex justify-between items-center" data-applicant-id="${applicant._id}">
                                 <span>${applicant.name} - Postulado el ${new Date(applicant.date).toLocaleDateString()}</span>
                                 <div class="flex space-x-2">
                                     <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Ver perfil</button>
                                     <button 
                                         class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700" 
                                         onclick="aceptarPostulante(this)" 
-                                        data-job-id="${job.id}" 
-                                        data-applicant-id="${applicant.id}">
+                                        data-job-id="${job._id}" 
+                                        data-applicant-id="${applicant._id}">
                                         Aceptar postulante
                                     </button>
                                 </div>
@@ -162,8 +162,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     </ul>
                 </div>
             </li>
-            <br> <!-- Aquí se agrega el <br> para separar trabajos -->
-        `).join('') : '<p class="text-center text-gray-500">No tienes trabajos creados.</p>';    
+            <br>
+        `).join('') : '<p class="text-center text-gray-500">No tienes trabajos creados.</p>';
+        
+        // Debugging
+        console.log('Jobs displayed:', jobs);
+        
 
 
         document.querySelectorAll('.accordion li').forEach(li => {
@@ -224,7 +228,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
                     alert('Postulante aceptado exitosamente.');
                 } else {
-                    alert('Error al aceptar al postulante.');
+                    console.error('Error accepting applicant:', error);
+
                 }
             } catch (error) {
                 console.error('Error accepting applicant:', error);
