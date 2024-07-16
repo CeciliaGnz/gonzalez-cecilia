@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de contratista</title>
     <link href="../src/css/output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <style>
@@ -27,16 +28,21 @@
 <body class="bg-gray-100">
 
     <!--<div id="nav-placeholder"></div>-->
-    <header class="bg-gray-900 text-white p-4 flex justify-between items-center">
-        <div class="logo"><img src="../src/img/Lancer.png" class="h-12"></div>
+    <header class="bg-white text-purple-600 p-4 flex justify-between items-center border-b-2">
+        <div class="logo">
+            <img src="../src/img/Lancer2.png" class="h-12 rounded-full ml-5">
+        </div>
         <nav>
           <ul class="flex space-x-4">
-            <li><a href="../frontend/html/index.html" class="hover:text-gray-300">Inicio</a></li>
-            <li><a href="" class="hover:text-gray-300">Nosotros</a></li>
+            <li><a href="../html/profileContractor.html" class="hover:text-gray-300">Mi perfil</a></li>
           </ul>
         </nav>
         <div class="relative">
-          <span id="user-email" class="ml-4 cursor-pointer">Alexis Rodríguez ▼</span>
+            <div class="flex items-start">
+          <span id="user-email" class="ml-4 cursor-pointer">Username ▼</span><svg xmlns="http://www.w3.org/2000/svg" class="ml-3 mt-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg></div>
+          
           <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded shadow-md">
             <a href="#" id="profile-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100"> Mi Perfil</a>
             <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Cerrar sesión</a>
@@ -51,32 +57,32 @@
             <button id="btn-tab2" class="w-1/2 py-4 text-center font-medium text-purple-700 bg-gray-100 rounded-tr-lg focus:outline-none" onclick="openTab(event, 'tab2')">Ver mis trabajos creados</button>
         </div>
         <div id="tab1" class="tabcontent">
-            <h2 class="text-2xl font-bold text-purple-800 pt-4">Bienvenid@ <span id="nombre-apellido">Nombre apellido</span></h2>
-            <p class="mt-2 text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel enim euismod,
-                imperdiet felis vel, ultrices risus. Sed nec quam id elit fringilla blandit a a risus.</p>
+            <h2 class="text-2xl font-bold text-purple-800 pt-4">Bienvenid@ <span id="welcome-profile-name">Nombre apellido</span></h2>
+            <p class="mt-2 text-gray-700">Estas en la sección de edición de perfil. Aquí podrás actualizar tu información personal, como tu nombre, número de teléfono, empresa y nacionalidad. 
+                Asegúrate de proporcionar datos precisos para que tu perfil esté siempre al día y refleje correctamente quién eres.</p>
 
             <div class="flex">
                 <aside class="w-1/3 p-4">
                     <div class="bg-white mt-8 overflow-hidden shadow rounded-lg border">
                         <div class="px-4 py-5 sm:px-6">
                             <h3 class="text-lg text-center leading-6 font-medium text-gray-900 pb-6">Foto de perfil</h3>
-                            <img class="w-20 h-20 rounded-full mx-auto" src="../src/img/profile.png" alt="">
+                            <img class="w-16 h-16 rounded-full mx-auto" src="../src/img/profile.png" alt="Foto de perfil">
                         </div>
                         
-                        
+                
                         <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
                             <dl class="sm:divide-y sm:divide-gray-200">
                                 <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium text-purple-500">Nombre completo</dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">John Doe</dd>
+                                    <dt class="text-sm font-medium text-purple-500">Nombre</dt>
+                                    <dd id="profile-name-display" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"></dd>
                                 </div>
                                 <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-purple-500">Correo</dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">johndoe@example.com</dd>
+                                    <dd id="profile-email" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"></dd>
                                 </div>
                                 <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-purple-500">Teléfono</dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">(123) 456-7890</dd>
+                                    <dd id="profile-phone" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"></dd>
                                 </div>
                                 <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-purple-500">Tipo de usuario</dt>
@@ -84,61 +90,60 @@
                                 </div>
                                 <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-purple-500">Empresa</dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Farmacias Arrocha</dd>
+                                    <dd id="profile-company" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"></dd>
                                 </div>
                                 <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-purple-500">Nacionalidad</dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Panameño</dd>
+                                    <dd id="profile-nationality" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"></dd>
                                 </div>
                             </dl>
                         </div>
                     </div>
                 </aside>
-
+                
                 <section class="w-2/3 p-4 mt-4">
                     <div class="bg-gray-100">
                         <div class="w-full max-w-3xl mx-auto p-4">
                             <div class="bg-white p-8 rounded-lg shadow-md border">
-                                <h1 class="text-2xl font-bold text-gray-800  mb-4">Editar mi perfil profesional</h1>
-
-                                <!-- Formulario de Edición -->
+                                <h1 class="text-2xl font-bold text-gray-800 mb-4">Editar mi perfil profesional</h1>
+                
                                 <div class="mb-6">
-                                    <h2 class="text-xl font-semibold text-gray-700  mb-6">Datos generales</h2>
+                                    <h2 class="text-xl font-semibold text-gray-700 mb-6">Datos generales</h2>
                                     <div class="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label for="first_name" class="block text-gray-700  mb-1">Nombre completo</label>
-                                            <input type="text" id="first_name" class="w-full rounded-lg border py-2 px-3 ">
+                                            <label for="username" class="block text-gray-700 mb-1">Nombre</label>
+                                            <input type="text" id="username" class="w-full rounded-lg border py-2 px-3">
                                         </div>
                                         <div>
-                                            <label for="last_name" class="block text-gray-700 d mb-1">Correo</label>
-                                            <input type="text" id="last_name" class="w-full rounded-lg border py-2 px-3" placeholder="johndoe@gmail.com" disabled>
+                                            <label for="email" class="block text-gray-700 mb-1">Correo</label>
+                                            <input type="text" id="email" class="w-full rounded-lg border py-2 px-3 text-gray-600"  disabled>
                                         </div>
                                     </div>
-
+                
                                     <div class="mt-4">
-                                        <label for="email" class="block text-gray-700 mb-1">Teléfono</label>
-                                        <input type="email" id="email" class="w-full rounded-lg border py-2 px-3">
+                                        <label for="phone" class="block text-gray-700 mb-1">Teléfono</label>
+                                        <input type="tel" id="phone" class="w-full rounded-lg border py-2 px-3">
                                     </div>
-
+                
                                     <div class="mt-4">
-                                        <label for="phone" class="block text-gray-700  mb-1">Nombre de la empresa</label>
-                                        <input type="text" id="phone" class="w-full rounded-lg border py-2 px-3">
+                                        <label for="company" class="block text-gray-700 mb-1">Nombre de la empresa</label>
+                                        <input type="text" id="company" class="w-full rounded-lg border py-2 px-3">
                                     </div>
-
+                
                                     <div class="mt-4">
-                                        <label for="nationality" class="block text-gray-700  mb-1">Nacionalidad</label>
-                                        <input type="text" id="nationality" class="w-full rounded-lg border py-2 px-3 " placeholder="Panameño">
+                                        <label for="nationality" class="block text-gray-700 mb-1">Nacionalidad</label>
+                                        <input type="text" id="nationality" class="w-full rounded-lg border py-2 px-3" placeholder="Panameño">
                                     </div>
                                 </div>
-
-                                <!-- Guardar Cambios -->
+                
                                 <div class="mt-8 flex justify-end">
-                                    <button class="bg-purple-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-purple-700 ">Guardar Cambios</button>
+                                    <button id="save-changes-btn" class="bg-purple-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-purple-700">Guardar Cambios</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+                
             </div>
         </div>
 
@@ -147,97 +152,20 @@
                 <h2 class="text-2xl font-bold text-purple-800">Trabajos creado por mi</h2>
                 <div class="flex justify-between items-center">
                     <a href="formNewJob.html" class="bg-purple-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-purple-700 flex items-center space-x-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
+                       
                         <span>Crear nuevo trabajo</span>
                     </a>
                 </div>
                
-                <!-- Modal -->
-                <div id="myModal" class="modal hidden">
-                    <div class="modal-content">
-                        <span class="close" id="closeModal">&times;</span>
-                        <h2>Crear Nuevo Trabajo</h2>
-                        <!-- Aquí se cargará el contenido del formulario -->
-                    </div>
-                </div>
                 
             </div>
-            <p class="mt-2 text-gray-700 pb-6">Duis lobortis velit tellus, eget luctus tellus facilisis eget. Maecenas non massa
-                varius, molestie lorem eget, molestie nisi. Suspendisse potenti.</p>
+            <p class="mt-2 text-gray-700 pb-6">En este espacio, encontrarás una lista de todos los trabajos que has creado. Recuerda que deberás realizar un pago por cada trabajo que publiques.</p>
+            
             <!-- Accordion start -->
-            <ul class="accordion w-full bg-gray-50 rounded-lg shadow-lg shadow-gray-100 p-4">
-                <!-- Duplicate this <li> as often as you want -->
-                <li class="cursor-pointer m-6">
-                    <span class="font-bold text-xl tracking-tight text-purple-500 flex justify-between items-center">
-                        <p>Título: <span id="title_job">Página web para cafetería</span></p>
-                        <span class="flex items-center">
-                            <p class="font-normal text-base text-gray-700 mr-2">Postulantes</p>
-                            <svg class="text-purple-600" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" viewBox="0 0 16 16">
-                                <path fill-rule="currentColor" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z" />
-                            </svg>
-                        </span>
-                    </span>
-                    <div class="text-gray-500 text-md p-2">
-                        <ul class="space-y-4">
-                            <!-- Postulante 1 -->
-                            <li class="flex justify-between items-center">
-                                <span>Sara Pérez - Postulado el 10/07/2024</span>
-                                <div class="flex space-x-2">
-                                    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Ver perfil</button>
-                                    <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700" onclick="aceptarPostulante(this)">Aceptar postulante</button>
-                                </div>
-                            </li>
-                            <!-- Postulante 2 -->
-                            <li class="flex justify-between items-center">
-                                <span>María Gómez - Postulada el 11/07/2024</span>
-                                <div class="flex space-x-2">
-                                    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Ver perfil</button>
-                                    <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700" onclick="aceptarPostulante(this)">Aceptar postulante</button>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-        
-                <div class="flex border-b border-gray-300"></div>
-                <li class="cursor-pointer m-6">
-                    <span class="font-bold text-xl tracking-tight text-purple-500 flex justify-between items-center">
-                        <p>Título: <span id="title_job">Página web para cafetería</span></p>
-                        <span class="flex items-center">
-                            <p class="font-normal text-base text-gray-700 mr-2">Postulantes</p>
-                            <svg class="text-purple-600" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" viewBox="0 0 16 16">
-                                <path fill-rule="currentColor" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z" />
-                            </svg>
-                        </span>
-                    </span>
-                    <div class="text-gray-500 text-md p-2">
-                        <ul class="space-y-4">
-                            <!-- Postulante 1 -->
-                            <li class="flex justify-between items-center">
-                                <span>Sara Perez- Postulado el 10/07/2024</span>
-                                <div class="flex space-x-2">
-                                    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Ver perfil</button>
-                                    <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700" onclick="aceptarPostulante(this)">Aceptar postulante</button>
-                                </div>
-                            </li>
-                            <!-- Postulante 2 -->
-                            <li class="flex justify-between items-center">
-                                <span>María Gómez - Postulada el 11/07/2024</span>
-                                <div class="flex space-x-2">
-                                    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Ver perfil</button>
-                                    <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700" onclick="aceptarPostulante(this)">Aceptar postulante</button>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-        
-                <div class="flex border-b border-gray-300"></div>
-                
-            </ul>
-            <!-- Accordion end -->
+        <ul class="accordion w-full bg-gray-50 rounded-lg shadow-lg shadow-gray-100 p-4">
+            <!-- Aquí se cargarán dinámicamente los trabajos -->
+        </ul>
+        <!-- Accordion end -->
         </div>
     </div>
 

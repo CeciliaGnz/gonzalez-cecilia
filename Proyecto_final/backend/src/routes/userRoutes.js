@@ -1,6 +1,6 @@
 import express from "express";
 import User from "../models/user.js"; // Importa el modelo de usuario
-import { generateToken } from "../middleware/auth.js";
+import { generateToken, authenticateToken } from "../middleware/auth.js";
 import bcrypt from 'bcryptjs';
 
 const router = express.Router();
@@ -76,6 +76,67 @@ router.get("/", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+// Ruta para obtener el perfil del usuario logueado
+router.get('/me', authenticateToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).select('-password'); // Excluye la contraseña
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Ruta para actualizar el perfil del usuario contratista
+router.put('/me', authenticateToken, async (req, res) => {
+  const { phone, company, nationality, username } = req.body; // Campos editables
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        profile: { phone, company, nationality },
+        username // Agregar el username aquí
+      },
+      { new: true, runValidators: true } // Devuelve el nuevo documento
+    ).select('-password');
+
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// Ruta para actualizar el perfil del talento
+router.put('/meTalent', authenticateToken, async (req, res) => {
+  const { phone, nationality, username, education, skills, languages, portfolio, linkedin } = req.body; // Campos editables
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        profile: { 
+          phone, 
+          nationality, 
+          skills,  
+          education,      
+          languages,     
+          portfolio,    
+          linkedin       
+        },
+        username // Agregar el username aquí
+      },
+      { new: true, runValidators: true } // Devuelve el nuevo documento
+    ).select('-password');
+
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+
+
 
 // Exporta el router
 export default router;

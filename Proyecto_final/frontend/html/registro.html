@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Cuenta</title>
+    <link rel="icon" href="../src/img/Lancer2.png">
     <link rel="stylesheet" href="../src/css/output.css">
     <!-- Incluye Tailwind CSS desde CDN -->
     <style>
@@ -34,7 +35,22 @@
         }
     </style>
 </head>
-<body class="flex flex-col md:flex-row h-screen font-serif">
+<!-- Navbar -->
+<header class="bg-white text-purple-600 p-4 flex justify-center items-center border-b-2">
+    <div class="logo">
+        <img src="../src/img/Lancer2.png" class="h-12 rounded-full ml-5">
+    </div>
+    <nav class="ml-auto mr-auto">
+        <ul class="flex space-x-4">
+            <li><a href="../html/homeNosotros.html" class="hover:text-purple-400">Sobre Nosotros</a></li>
+            <li><a href="../html/registro.html" class="hover:text-purple-400">Registrarte</a></li>
+            <li><a href="../html/login.html" class="hover:text-purple-400">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Contenido principal -->
+<div class="flex flex-col md:flex-row h-screen">
     <!-- Contenedor de la izquierda con 60% de ancho en pantallas grandes y 95% en pantallas pequeñas -->
     <div class="left w-full md:w-7/12 lg:w-5/9 relative overflow-hidden">
         <div class="overlay-container relative w-full h-full">
@@ -79,7 +95,7 @@
             </div>
 
             <!-- Mensaje de inicio de sesión -->
-            <p class="text-sm text-gray-600 mb-4 shadow-text text-center">¿Ya tienes una cuenta? <a href="../html/Login.html" class="text-purple-600 hover:underline">¡Inicia Sesión!</a></p> <!-- Sombra de texto añadida -->
+            <p class="text-sm text-gray-600 mb-4 shadow-text text-center">¿Ya tienes una cuenta? <a href="../html/Login.html" class="text-purple-600 hover:underline"><span class="font-semibold">¡Inicia Sesión!</span></a></p> <!-- Sombra de texto añadida -->
             
             <!-- Botón ajustado para que se mantenga centrado -->
             <input type="submit" value="Registrarse" class="self-center px-8 py-2 bg-purple-600 text-white rounded-lg cursor-pointer transition duration-300 hover:bg-purple-400">
