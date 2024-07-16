@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de contratista</title>
     <link href="../src/css/output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <style>
@@ -33,13 +34,15 @@
         </div>
         <nav>
           <ul class="flex space-x-4">
-            <li><a href="../frontend/html/index.html" class="hover:text-gray-300">Inicio</a></li>
-            <li><a href="" class="hover:text-gray-300">Nosotros</a></li>
             <li><a href="../html/profileContractor.html" class="hover:text-gray-300">Mi perfil</a></li>
           </ul>
         </nav>
         <div class="relative">
-          <span id="user-email" class="ml-4 cursor-pointer">Username ▼</span>
+            <div class="flex items-start">
+          <span id="user-email" class="ml-4 cursor-pointer">Username ▼</span><svg xmlns="http://www.w3.org/2000/svg" class="ml-3 mt-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg></div>
+          
           <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded shadow-md">
             <a href="#" id="profile-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100"> Mi Perfil</a>
             <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Cerrar sesión</a>
@@ -63,8 +66,9 @@
                     <div class="bg-white mt-8 overflow-hidden shadow rounded-lg border">
                         <div class="px-4 py-5 sm:px-6">
                             <h3 class="text-lg text-center leading-6 font-medium text-gray-900 pb-6">Foto de perfil</h3>
-                            <img class="w-20 h-20 rounded-full mx-auto" src="../src/img/profile.png" alt="">
+                            <img class="w-16 h-16 rounded-full mx-auto" src="../src/img/profile.png" alt="Foto de perfil">
                         </div>
+                        
                 
                         <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
                             <dl class="sm:divide-y sm:divide-gray-200">
@@ -148,9 +152,7 @@
                 <h2 class="text-2xl font-bold text-purple-800">Trabajos creado por mi</h2>
                 <div class="flex justify-between items-center">
                     <a href="formNewJob.html" class="bg-purple-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-purple-700 flex items-center space-x-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
+                       
                         <span>Crear nuevo trabajo</span>
                     </a>
                 </div>

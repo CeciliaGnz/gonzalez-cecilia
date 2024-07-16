@@ -16,14 +16,17 @@
     <nav>
       <ul class="flex space-x-4">
         <li><a href="#" class="hover:text-gray-300">Inicio</a></li>
-        <li><a href="../html/nosotros.html" class="hover:text-gray-300">Nosotros</a></li>
         <li><a href="../html/home.html" class="hover:text-gray-300">Busco trabajo</a></li>
         <li><a href="../html/profileFree.html" class="hover:text-gray-300">Mi perfil</a></li>
       </ul>
     </nav>
     <div class="relative">
-      <input type="text" id="search-input" class="rounded p-2 text-gray-500" placeholder="Búsqueda">
-      <span id="user-email" class="ml-4 cursor-pointer">Email  ▼</span>
+      
+       <div class="flex items-start">
+        <input type="text" id="search-input" class="rounded p-2 text-gray-500 border" placeholder="Búsqueda">
+          <span id="user-email" class="ml-4 p-2 cursor-pointer">Username ▼</span><svg xmlns="http://www.w3.org/2000/svg" class="ml-3 mt-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg></div>
       <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded shadow-md">
         <a href="#" id="profile-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100"> Mi Perfil</a>
         <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Cerrar sesión</a>
@@ -38,7 +41,7 @@
       <div class="mb-4" id="areaFilter">
         <!-- Los filtros de area se insertarán aquí -->
       </div>
-      <h2 class="font-bold mb-2">Filtrar vacantes por lenguaje de programación:</h2>
+      <h2 class="font-bold text-purple-900 mb-2">Filtrar vacantes por lenguaje de programación:</h2>
       <div class="mb-4" id="languageFilter">
         <!-- Los filtros de lenguaje se insertarán aquí -->
       </div>
@@ -56,6 +59,7 @@
     </section>
   </main>
   <script src="../src/js/home.js"></script>
+
 </body>
 
 </html>

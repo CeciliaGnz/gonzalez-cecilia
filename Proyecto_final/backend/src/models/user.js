@@ -9,11 +9,11 @@ const userSchema = new mongoose.Schema({
     phone: { type: String, default: '' },
     company: { type: String, default: '' },
     nationality: { type: String, default: '' },
-    education: { type: String, default: ''}, // education
-    skills: { type: String, default: ''}, // Habilidades
-    languages: { type: String, default: ''}, // Idiomas
-    portfolio: { type: String, default: '' }, // URL del portafolio
-    linkedin: { type: String, default: '' } // URL de LinkedIn
+    education: { type: String, default: ''}, // education no agarra
+    skills: { type: String, default: ''}, 
+    languages: { type: String, default: ''},
+    portfolio: { type: String, default: '' },
+    linkedin: { type: String, default: '' } 
   },
   type: { type: String, required: false }
 });

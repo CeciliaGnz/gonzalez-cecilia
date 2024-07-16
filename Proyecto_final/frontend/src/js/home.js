@@ -218,22 +218,30 @@
             },
             renderFilters() {
                 // Renderizar filtros de áreas
-                
                 App.htmlElements.areaFilter.innerHTML = App.data.areaOptions.map(area =>
-                    `<label><input type="checkbox" name="area" value="${area}" class="mr-2 ml-2 filter-checkbox"> ${area}</label>`
+                    `<label class="block mb-2">
+                        <input type="checkbox" name="area" value="${area}" class="mr-2 ml-2 filter-checkbox"> 
+                        ${area}
+                    </label>`
                 ).join('');
-            
+                
                 // Renderizar filtros de lenguajes de programación
-                
                 App.htmlElements.languageFilter.innerHTML = App.data.languageOptions.map(language =>
-                    `<label><input type="checkbox" name="language" value="${language}" class="mr-2 ml-2 filter-checkbox"> ${language}</label>`
+                    `<label class="block mb-2">
+                        <input type="checkbox" name="language" value="${language}" class="mr-2 ml-2 filter-checkbox"> 
+                        ${language}
+                    </label>`
+                ).join('');
+                
+                // Renderizar filtros de salarios
+                App.htmlElements.salaryFilter.innerHTML = App.data.salaryOptions.map(salary =>
+                    `<label class="block mb-2">
+                        <input type="checkbox" name="salary" value="${salary}" class="mr-2 ml-2 filter-checkbox"> 
+                        ${salary}
+                    </label>`
                 ).join('');
             
-                // Renderizar filtros de salarios
-                
-                App.htmlElements.salaryFilter.innerHTML = App.data.salaryOptions.map(salary =>
-                    `<label><input type="checkbox" name="salary" value="${salary}" class="mr-2  ml-2 filter-checkbox"> ${salary}</label>`
-                ).join('');
+            
 
                 // Asignar eventos a los checkboxes después de renderizarlos
                 App.htmlElements.filterCheckboxes = document.querySelectorAll(".filter-checkbox");

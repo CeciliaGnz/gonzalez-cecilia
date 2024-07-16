@@ -48,6 +48,12 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        const linkPay = document.getElementById('linkPay');
+        if (!linkPay.checked) {
+            alert('Por favor acepta los términos de pago y autorización.');
+            return;
+        }
+
         const jobData = {
             title: title,
             description: description,
