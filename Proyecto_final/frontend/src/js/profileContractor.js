@@ -10,20 +10,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const nationalityInput = document.getElementById('nationality');
     const usernameInput = document.getElementById('username');
 
-    // Initialize user data
+   
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     const token = currentUser ? currentUser.token : null;
 
-    // Check if user is logged in
     if (!token) {
         window.location.href = 'Login.html';
     } else {
         userEmail.textContent = currentUser.email;
-        fetchUserProfile(); // Fetch user profile on load
-        fetchJobs(); // Fetch jobs on load
+        fetchUserProfile(); 
+        fetchJobs(); 
     }
 
-    // Logout functionality
+   
     if (logoutBtn) {
         logoutBtn.addEventListener('click', function(event) {
             event.preventDefault();
@@ -32,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Profile redirection
     if (profileBtn) {
         profileBtn.addEventListener('click', function(event) {
             event.preventDefault();
@@ -40,12 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Toggle user menu
+  
     userEmail.addEventListener('click', function() {
         userMenu.classList.toggle('hidden');
     });
 
-    // Fetch user profile
+ 
     async function fetchUserProfile() {
         try {
             const response = await fetch('/api/users/me', {
@@ -82,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
         usernameInput.value = user.username || '';
     }
 
-    // Save profile changes
+ 
     if (saveChangesBtn) {
         saveChangesBtn.addEventListener('click', async () => {
             const phone = phoneInput.value;
@@ -102,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (response.ok) {
                     alert('Perfil actualizado con éxito.');
-                    fetchUserProfile(); // Opcionalmente, vuelve a cargar los datos
+                    fetchUserProfile(); 
                 } else {
                     alert('Error al actualizar el perfil.');
                 }
@@ -112,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Fetch jobs
+ 
     async function fetchJobs() {
         try {
             const response = await fetch('/api/jobs/contractor', {
@@ -130,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Display jobs
+  
     function displayJobs(jobs) {
         const jobsList = document.querySelector('.accordion');
         jobsList.innerHTML = jobs.length ? jobs.map(job => `
@@ -167,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <br> <!-- Aquí se agrega el <br> para separar trabajos -->
         `).join('') : '<p class="text-center text-gray-500">No tienes trabajos creados.</p>';    
 
-        // Agregar eventos de clic al acordeón
+
         document.querySelectorAll('.accordion li').forEach(li => {
             li.addEventListener('click', function() {
                 const content = this.querySelector('div');
@@ -179,22 +177,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
 
-    // Accept applicant function
+
     window.aceptarPostulante = async function(button) {
         if (confirm("¿Está seguro de que desea aceptar a este postulante? Esto rechazará a todos los demás postulantes.")) {
-            const applicantLi = button.closest('li'); // li del postulante
-            const acceptedApplicantId = button.dataset.applicantId; // ID del postulante
-            const jobId = button.dataset.jobId; // ID del trabajo
+            const applicantLi = button.closest('li'); 
+            const acceptedApplicantId = button.dataset.applicantId; 
+            const jobId = button.dataset.jobId; 
     
-            console.log('Job ID:', jobId); // Verifica el ID del trabajo
+            console.log('Job ID:', jobId); 
     
-            // Verifica si tenemos ambos IDs
+        
             if (!acceptedApplicantId || !jobId) {
                 alert('No se pudo obtener el ID del postulante o del trabajo.');
                 return;
             }
     
-            // Llamar al API para aceptar el postulante
+           
             try {
                 const response = await fetch(`/api/jobs/${jobId}/acceptApplicant`, {
                     method: 'PATCH',

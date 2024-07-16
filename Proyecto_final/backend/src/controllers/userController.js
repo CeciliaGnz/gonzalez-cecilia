@@ -19,9 +19,8 @@ export const updateUserProfile = async (req, res) => {
     if (user) {
         user.username = req.body.username || user.username;
 
-        // Asegúrate de que user.profile esté definido
         if (!user.profile) {
-            user.profile = {}; // Inicializa profile si es undefined
+            user.profile = {}; 
         }
 
         user.profile.phone = req.body.phone || user.profile.phone;

@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (cancelButton) {
         cancelButton.addEventListener('click', function() {
-            // Cerrar el formulario y regresar al tab2
             window.history.back();
         });
     }
@@ -11,14 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('create-button').addEventListener('click', async (event) => {
         event.preventDefault();
         
-        // Obtener los datos del formulario
         const formData = new FormData(document.getElementById('formNewJob'));
         const title = formData.get('title');
         const description = formData.get('description');
         const area = formData.get('area');
         const salary = formData.get('money');
 
-        // Validar campos requeridos
         let missingFields = [];
 
         if (!title) {
@@ -39,10 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Obtener lenguajes de programación seleccionados como string delimitado por comas
+  
         const programmingLanguages = Array.from(formData.getAll('programming_language')).filter(lang => lang).join(', ');
 
-        // Validar si al menos un lenguaje de programación ha sido seleccionado
         if (!programmingLanguages) {
             alert('Por favor selecciona al menos un lenguaje de programación.');
             return;
@@ -59,10 +55,9 @@ document.addEventListener('DOMContentLoaded', function() {
             description: description,
             area: area,
             salary: salary,
-            programming_language: programmingLanguages // String de lenguajes de programación
+            programming_language: programmingLanguages 
         };
 
-        // Obtener el token de sessionStorage
         const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
         const token = currentUser ? currentUser.token : null;
 
@@ -73,9 +68,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         try {
             const response = await fetch('/api/jobs/createJob', {
-                method: 'POST', // Asegúrate de que el método sea POST
+                method: 'POST', 
                 headers: {
-                    'Authorization': `Bearer ${token}`,  // Asegúrate de incluir el token
+                    'Authorization': `Bearer ${token}`,  
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(jobData)
@@ -83,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (response.ok) {
                 alert('Trabajo creado exitosamente.');
-                window.location.href = '/api/payments/create-order'; // Cambia la URL a donde quieras redirigir
+                window.location.href = '/api/payments/create-order'; 
             } else {
                 const errorData = await response.json();
                 alert('Error al crear el trabajo: ' + errorData.message);
