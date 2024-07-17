@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
 });
 
 
-// Encriptar contraseña antes de guardar
+//encriptar contraseña antes de guardar
 userSchema.pre('save', async function(next) {
   if (this.isModified('password') || this.isNew) {
     this.password = await bcrypt.hash(this.password, 10);

@@ -5,7 +5,7 @@ const applicationSchema = new mongoose.Schema({
   talent_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   status: { type: String, enum: ['pending', 'rejected', 'accepted'], default: 'pending' },
   work_submission: { type: String },
-  date: { type: Date, default: Date.now } // Agregado
+  date: { type: Date, default: Date.now } // agregado 
 });
 
 const Application = mongoose.model('Application', applicationSchema);

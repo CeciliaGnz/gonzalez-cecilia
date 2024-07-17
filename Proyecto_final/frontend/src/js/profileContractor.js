@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const nationalityInput = document.getElementById('nationality');
     const usernameInput = document.getElementById('username');
 
-   
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     const token = currentUser ? currentUser.token : null;
 
@@ -18,11 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'Login.html';
     } else {
         userEmail.textContent = currentUser.email;
-        fetchUserProfile(); 
-        fetchJobs(); 
+        fetchUserProfile();
+        fetchJobs();
     }
 
-   
     if (logoutBtn) {
         logoutBtn.addEventListener('click', function(event) {
             event.preventDefault();
@@ -38,12 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-  
     userEmail.addEventListener('click', function() {
         userMenu.classList.toggle('hidden');
     });
 
- 
     async function fetchUserProfile() {
         try {
             const response = await fetch('/api/users/me', {
@@ -52,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     'Authorization': `Bearer ${token}`
                 }
             });
-            
+
             if (response.ok) {
                 const user = await response.json();
                 populateProfile(user);
@@ -80,7 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
         usernameInput.value = user.username || '';
     }
 
- 
     if (saveChangesBtn) {
         saveChangesBtn.addEventListener('click', async () => {
             const phone = phoneInput.value;
@@ -100,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (response.ok) {
                     alert('Perfil actualizado con éxito.');
-                    fetchUserProfile(); 
+                    fetchUserProfile();
                 } else {
                     alert('Error al actualizar el perfil.');
                 }
@@ -110,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
- 
     async function fetchJobs() {
         try {
             const response = await fetch('/api/jobs/contractor', {
@@ -128,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-  
     function displayJobs(jobs) {
         const jobsList = document.querySelector('.accordion');
         jobsList.innerHTML = jobs.length ? jobs.map(job => `
@@ -167,8 +160,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Debugging
         console.log('Jobs displayed:', jobs);
-        
-
 
         document.querySelectorAll('.accordion li').forEach(li => {
             li.addEventListener('click', function() {
@@ -179,24 +170,20 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-    
-
 
     window.aceptarPostulante = async function(button) {
         if (confirm("¿Está seguro de que desea aceptar a este postulante? Esto rechazará a todos los demás postulantes.")) {
-            const applicantLi = button.closest('li'); 
-            const acceptedApplicantId = button.dataset.applicantId; 
-            const jobId = button.dataset.jobId; 
-    
-            console.log('Job ID:', jobId); 
-    
-        
+            const applicantLi = button.closest('li');
+            const acceptedApplicantId = button.dataset.applicantId;
+            const jobId = button.dataset.jobId;
+
+            console.log('Job ID:', jobId);
+
             if (!acceptedApplicantId || !jobId) {
                 alert('No se pudo obtener el ID del postulante o del trabajo.');
                 return;
             }
-    
-           
+
             try {
                 const response = await fetch(`/api/jobs/${jobId}/acceptApplicant`, {
                     method: 'PATCH',
@@ -206,41 +193,34 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     body: JSON.stringify({ acceptedApplicantId })
                 });
-    
+
                 if (response.ok) {
-                    // Actualiza el DOM
                     applicantLi.innerHTML = `
                         <span class="font-semibold text-lg tracking-tight text-gray-500">
                             Persona encargada: <span>${applicantLi.querySelector('span').textContent.split(' - ')[0]}</span>
                         </span>
                     `;
-                    
-                    // Elimina los demás postulantes
-                    const jobLi = applicantLi.closest('.accordion').querySelector('li[data-job-id]');
+
+                    const jobLi = applicantLi.closest('li[data-job-id]');
                     const applicantsList = jobLi.querySelector('div ul');
                     const remainingApplicants = applicantsList.querySelectorAll('li');
-    
+
                     remainingApplicants.forEach(li => {
                         if (li !== applicantLi) {
                             li.remove();
                         }
                     });
-    
+
                     alert('Postulante aceptado exitosamente.');
                 } else {
-                    console.error('Error accepting applicant:', error);
-
+                    console.error('Error accepting applicant:', response.statusText);
                 }
             } catch (error) {
                 console.error('Error accepting applicant:', error);
             }
         }
     };
-    
-    
-
 });
-
 
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
@@ -255,7 +235,6 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).classList.remove("hidden");
     evt.currentTarget.classList.add("active:bg-purple-200");
 }
-
 
 // Accordion functionality
 $(document).on('click', '.accordion li', function() {

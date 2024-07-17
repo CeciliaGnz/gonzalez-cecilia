@@ -7,7 +7,7 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Configurar dotenv
+
 config({ path: path.resolve(__dirname, '../.env') });
 
 // Paypal
@@ -15,8 +15,6 @@ export const PAYPAL_API_CLIENT = process.env.PAYPAL_API_CLIENT;
 export const PAYPAL_API_SECRET = process.env.PAYPAL_API_SECRET;
 export const PAYPAL_API = process.env.PAYPAL_API; 
 
-
-// Server
 export const PORT = process.env.PORT || 4000;
 console.log("PORT IN CONFIG: ", PORT);
 export const HOST =

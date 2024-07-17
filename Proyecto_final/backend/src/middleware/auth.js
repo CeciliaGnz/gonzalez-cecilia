@@ -20,5 +20,4 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-// Exporta como ES Module
 export { generateToken, authenticateToken };

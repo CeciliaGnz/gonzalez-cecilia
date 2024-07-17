@@ -18,7 +18,6 @@ router.get('/', authenticateToken, async (req, res) => {
 });
 
 // Extraer todos los jobs de un contractor
-// Extraer todos los jobs de un contractor
 router.get('/contractor', authenticateToken, async (req, res) => {
   try {
     const userEmail = req.user.email;
@@ -41,7 +40,7 @@ router.get('/contractor', authenticateToken, async (req, res) => {
       job.applicants = job.applicants.map(applicant => ({
         ...applicant,
         name: talentMap[applicant.talent_id] || 'Unknown',
-        date: applicant.date // Asegúrate de incluir la fecha
+        date: applicant.date 
       }));
     });
 
@@ -77,8 +76,6 @@ router.post('/createJob', authenticateToken, async (req, res) => {
 });
 
 
-
-// Aplicar a un trabajo
 // Aplicar a un trabajo
 router.patch('/:id/applicants', authenticateToken, async (req, res) => {
   try {
@@ -94,7 +91,7 @@ router.patch('/:id/applicants', authenticateToken, async (req, res) => {
       throw new Error("Ya tiene un proceso de aplicación a este trabajo.");
     }
     
-    // Obtener información adicional del talento
+    //información adicional del talento
     const talentInfo = {
         username: user.username,
         email: user.email,
@@ -114,7 +111,7 @@ router.patch('/:id/applicants', authenticateToken, async (req, res) => {
         talent_id: user._id,
         status,
         work_submission,
-        talent_info: talentInfo // Guardar información adicional
+        talent_info: talentInfo 
     });
     await application.save();
 
@@ -125,6 +122,7 @@ router.patch('/:id/applicants', authenticateToken, async (req, res) => {
 });
 
 
+// Extraer todas las aplicaciones de un talento
 router.get('/applications', authenticateToken, async (req, res) => {
   try {
     const userEmail = req.user.email;
@@ -150,23 +148,23 @@ router.get('/applications', authenticateToken, async (req, res) => {
 
 
 
-// Eliminar una aplicación
+
+//delete una aplicación de talento
 router.delete('/applications/:id', authenticateToken, async (req, res) => {
   try {
     const applicationId = req.params.id;
     const userEmail = req.user.email;
     const user = await User.findOne({ email: userEmail });
 
-    // Verificar que la aplicación pertenezca al usuario
+    //que la aplicacion sea del usuario
     const application = await Application.findOne({ _id: applicationId, talent_id: user._id });
     if (!application) {
       return res.status(404).json({ message: 'Postulación no encontrada' });
     }
 
-    // Eliminar la aplicación
+    // eliminar la aplicación
     await Application.findByIdAndDelete(applicationId);
     
-    // También puedes eliminarla del trabajo (opcional)
     await Job.updateOne(
       { _id: application.job_id },
       { $pull: { applicants: { talent_id: user._id } } }

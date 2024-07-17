@@ -221,17 +221,16 @@ function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].classList.add("hidden"); // Oculta todos los tabs
+        tabcontent[i].classList.add("hidden"); 
     }
     tablinks = document.getElementsByTagName("button");
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].classList.remove("active:bg-purple-200");
     }
-    document.getElementById(tabName).classList.remove("hidden"); // Muestra el tab seleccionado
+    document.getElementById(tabName).classList.remove("hidden");
     if (evt) {
         evt.currentTarget.classList.add("active:bg-purple-200");
     }
 
-    // Actualiza la URL para reflejar el tab activo
     history.replaceState(null, null, `?tab=${tabName.substr(3)}`);
 }
