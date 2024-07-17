@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-  
         const programmingLanguages = Array.from(formData.getAll('programming_language')).filter(lang => lang).join(', ');
 
         if (!programmingLanguages) {
@@ -64,40 +63,28 @@ document.addEventListener('DOMContentLoaded', function() {
             area: area,
             salary: salary,
             programming_language: programmingLanguages,
-            contractor_id : currentUser.email
+            contractor_id: currentUser.email
         };
 
-        // creaccion de pago
         try {
-
-            await fetch('http://localhost:3000/api/jobs/createJob', {
-                 method: 'POST', 
-                 headers: {
-                    'Authorization': `Bearer ${token}`,  
-                     'Content-Type': 'application/json'
-            },
-                 body: JSON.stringify(jobData)
-            });
-
-            // Crear el orden
-            await fetch('http://localhost:3000/api/payments/create-order', {
+            // Crear la orden de pago
+            const paymentResponse = await fetch('http://localhost:3000/api/payments/create-order', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': token
+                    'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({})
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.approval_url) {
+                body: JSON.stringify({ jobData, token })
+            });
+
+            const paymentData = await paymentResponse.json();
+
+            if (paymentResponse.ok && paymentData.approval_url) {
                 // Redirigir al usuario a PayPal para aprobar el pago
-                window.location.href = data.approval_url;
-                } else {
-                alert('Error creando pago')
-                }
-            })
-            .catch(error => console.error('Error:', error));
+                window.location.href = paymentData.approval_url;
+            } else {
+                throw new Error('Error creando el pago');
+            }
         } catch (error) {
             console.error('Error:', error);
             alert('Error en la conexión. Por favor, inténtalo de nuevo.');

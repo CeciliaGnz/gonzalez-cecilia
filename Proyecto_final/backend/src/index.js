@@ -6,6 +6,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import session from 'express-session';
 
 import { PORT } from './config.js';
 import userRoutes from './routes/userRoutes.js';
@@ -20,6 +21,14 @@ const __dirname = dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const app = express();
+
+// Configuración de express-session
+app.use(session({
+  secret: 'your-secret-key', // Cambia esta clave secreta por una más segura
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Asegúrate de configurar 'secure: true' si usas HTTPS
+}));
 
 // Middleware CORS y JSON parsing
 app.use(cors());

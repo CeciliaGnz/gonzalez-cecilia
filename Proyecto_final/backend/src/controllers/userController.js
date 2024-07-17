@@ -10,8 +10,7 @@ export const getUserProfile = async (req, res) => {
         res.status(404).json({ message: 'User not found' });
     }
 };
-
-// Actualizar el perfil del usuario contratista
+   
 // Actualizar el perfil del usuario contratista
 export const updateUserProfile = async (req, res) => {
     const user = await User.findById(req.user._id);
